@@ -3436,7 +3436,7 @@
             onkeydown="if(event.key==='Enter')doLogin()" /></div>
         <div class="al-err" id="al-err">❌ Invalid credentials. Please try again.</div>
         <button class="btn-login" onclick="doLogin()"><i class="fas fa-sign-in-alt"></i> Login</button>
-        <p class="al-hint">Demo: admin / ka21admin123</p>
+        <p class="al-hint">Protected Admin Area</p>
       </div>
     </div>
   </div>
@@ -3662,7 +3662,15 @@
   <!-- ======= JAVASCRIPT ======= -->
   <script>
     // ——— CREDENTIALS ———
-    const CREDS = { u: 'admin', p: 'ka21admin123' };
+    const CREDS = { u: 'admin', pH: 'c3cd06c675f3c9271fd9c077d301e2de0f3845469e2915e423779001513e75ae' }; // SHA-256 hash of ka21admin123
+
+    // Hash helper for secure login validation
+    async function sha256(str) {
+      const utf8 = new TextEncoder().encode(str);
+      const hashBuffer = await crypto.subtle.digest('SHA-256', utf8);
+      const hashArray = Array.from(new Uint8Array(hashBuffer));
+      return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    }
 
     // ——— CATEGORIES CONFIG ———
     const CATS = [
@@ -4154,10 +4162,19 @@
     // ——— ADMIN ———
     function openAdminLogin() { document.getElementById('al-ov').classList.add('on'); document.getElementById('al').classList.add('on'); document.body.style.overflow = 'hidden'; }
     function closeAdminLogin(e, f = false) { if (f || (e && e.target === document.getElementById('al-ov'))) { document.getElementById('al-ov').classList.remove('on'); document.getElementById('al').classList.remove('on'); document.body.style.overflow = ''; document.getElementById('al-err').style.display = 'none'; } }
-    function doLogin() {
-      const u = document.getElementById('au').value.trim(); const p = document.getElementById('ap').value.trim(); const err = document.getElementById('al-err');
-      if (u === CREDS.u && p === CREDS.p) { err.style.display = 'none'; closeAdminLogin(null, true); openAdm(); }
-      else { err.style.display = 'block'; }
+    async function doLogin() {
+      const u = document.getElementById('au').value.trim();
+      const p = document.getElementById('ap').value.trim();
+      const err = document.getElementById('al-err');
+      const inputHash = await sha256(p);
+
+      if (u === CREDS.u && inputHash === CREDS.pH) {
+        err.style.display = 'none';
+        closeAdminLogin(null, true);
+        openAdm();
+      } else {
+        err.style.display = 'block';
+      }
     }
     function openAdm() { document.getElementById('adm').classList.add('vis'); document.body.style.overflow = ''; renderAdmDash(); toast('👋 Welcome back, Admin!', 'suc'); }
     function doLogout() { document.getElementById('adm').classList.remove('vis'); document.getElementById('au').value = ''; document.getElementById('ap').value = ''; toast('Logged out!', 'inf'); }
@@ -4376,13 +4393,13 @@
       p.age = document.getElementById('ea').value;
       p.category = document.getElementById('ec').value;
       p.desc = document.getElementById('edesc').value.trim() || p.desc;
-      
+
       let imgVal = document.getElementById('eimg').value.trim();
       if (imgVal && !imgVal.startsWith('data:') && !imgVal.startsWith('http://') && !imgVal.startsWith('https://') && !imgVal.startsWith('images/')) {
         imgVal = 'images/' + imgVal;
       }
       p.img = imgVal || p.img;
-      
+
       p.stock = parseInt(document.getElementById('estk').value) || p.stock;
       p.material = document.getElementById('emat').value.trim() || p.material;
       save.prods(); renderAdmProds(); renderProds(); closeEM(null, true); toast('✅ Product updated!', 'suc');
