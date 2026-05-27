@@ -1,0 +1,4474 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KA21TOYS – Hot Wheels | Ride-On Cars | Teddy Bears 🚗🧸</title>
+  <meta name="description"
+    content="KA21TOYS – Shop Hot Wheels, Framed Collector Cars, Giant Teddy Bears & Electric Ride-On Cars for kids aged 3–12 in India!" />
+  <link href="https://fonts.googleapis.com/css2?family=Righteous&family=Nunito:wght@400;600;700;800;900&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    /* ======= TOKENS ======= */
+    :root {
+      --red: #FF3B5C;
+      --orange: #FF6B2B;
+      --yellow: #FFD93D;
+      --green: #3DD68C;
+      --blue: #4B8FFF;
+      --purple: #B14FFF;
+      --pink: #FF63A5;
+      --dark: #0d0d1a;
+      --dark2: #12122a;
+      --dark3: #1a1a38;
+      --card: rgba(255, 255, 255, 0.04);
+      --border: rgba(255, 255, 255, 0.09);
+      --radius: 22px;
+      --shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+      --transition: all 0.38s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: var(--dark);
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    ::-webkit-scrollbar {
+      width: 7px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--dark);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--red);
+      border-radius: 4px;
+    }
+
+    /* ======= ANIMATED BG ======= */
+    .bg-orbs {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      animation: orb-drift ease-in-out infinite;
+    }
+
+    @keyframes orb-drift {
+
+      0%,
+      100% {
+        transform: translate(0, 0) scale(1);
+      }
+
+      50% {
+        transform: translate(40px, -60px) scale(1.2);
+      }
+    }
+
+    /* ======= LOADING ======= */
+    #loading {
+      position: fixed;
+      inset: 0;
+      background: var(--dark);
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: opacity .5s, visibility .5s;
+    }
+
+    #loading.gone {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .loading-icon {
+      font-size: 5rem;
+      animation: bounce-car .7s ease-in-out infinite alternate;
+    }
+
+    @keyframes bounce-car {
+      from {
+        transform: translateY(0) rotate(-3deg);
+      }
+
+      to {
+        transform: translateY(-18px) rotate(3deg);
+      }
+    }
+
+    .loading-brand {
+      font-family: 'Righteous', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 900;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      background: linear-gradient(135deg, var(--red), var(--yellow), var(--orange));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-top: .8rem;
+      text-shadow: 0 0 25px rgba(255, 59, 92, 0.35);
+      animation: brand-skew 2.5s ease-in-out infinite alternate;
+    }
+
+    @keyframes brand-skew {
+      from {
+        transform: skewX(-5deg);
+      }
+
+      to {
+        transform: skewX(-12deg);
+      }
+    }
+
+    .loading-sub {
+      color: rgba(255, 255, 255, .4);
+      font-size: .9rem;
+      font-weight: 700;
+      margin-top: .3rem;
+    }
+
+    .loading-bar {
+      width: 220px;
+      height: 5px;
+      background: rgba(255, 255, 255, .1);
+      border-radius: 3px;
+      margin-top: 1.5rem;
+      overflow: hidden;
+    }
+
+    .loading-fill {
+      height: 100%;
+      background: linear-gradient(135deg, var(--red), var(--yellow));
+      border-radius: 3px;
+      animation: fill-bar 1.6s ease forwards;
+    }
+
+    @keyframes fill-bar {
+      from {
+        width: 0
+      }
+
+      to {
+        width: 100%
+      }
+    }
+
+    /* ======= NAVBAR ======= */
+    #navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      height: 68px;
+      background: rgba(13, 13, 26, .88);
+      backdrop-filter: blur(22px);
+      border-bottom: 1px solid rgba(255, 59, 92, .18);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      transition: background .3s;
+    }
+
+    .nav-logo {
+      font-family: 'Righteous', sans-serif;
+      font-size: 1.95rem;
+      font-weight: 900;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      background: linear-gradient(135deg, var(--red) 0%, var(--yellow) 50%, var(--orange) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      cursor: pointer;
+      text-shadow: 0 0 15px rgba(255, 59, 92, 0.25);
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      display: inline-flex;
+      align-items: center;
+      animation: logo-glow 3s ease-in-out infinite;
+    }
+
+    .nav-logo:hover {
+      transform: scale(1.08) skewX(-10deg);
+      filter: drop-shadow(0 0 15px rgba(255, 59, 92, 0.65));
+    }
+
+    @keyframes logo-glow {
+
+      0%,
+      100% {
+        filter: drop-shadow(0 0 6px rgba(255, 59, 92, .4));
+      }
+
+      50% {
+        filter: drop-shadow(0 0 18px rgba(255, 59, 92, .9));
+      }
+    }
+
+    .nav-links {
+      display: flex;
+      gap: .3rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: rgba(255, 255, 255, .8);
+      text-decoration: none;
+      font-weight: 800;
+      font-size: .88rem;
+      padding: .4rem .9rem;
+      border-radius: 50px;
+      transition: .25s;
+      white-space: nowrap;
+    }
+
+    .nav-links a:hover {
+      background: var(--red);
+      color: #fff;
+      transform: scale(1.06);
+    }
+
+    .nav-right {
+      display: flex;
+      gap: .6rem;
+      align-items: center;
+    }
+
+    .icon-btn {
+      background: rgba(255, 255, 255, .09);
+      border: none;
+      color: #fff;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .icon-btn:hover {
+      background: var(--red);
+      transform: scale(1.1);
+    }
+
+    .badge {
+      position: absolute;
+      top: -4px;
+      right: -4px;
+      background: var(--yellow);
+      color: var(--dark);
+      font-size: .62rem;
+      font-weight: 900;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .btn-admin {
+      background: linear-gradient(135deg, var(--purple), #7b2fff);
+      border: none;
+      color: #fff;
+      padding: .42rem 1.1rem;
+      border-radius: 50px;
+      font-size: .85rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: var(--transition);
+      font-family: 'Nunito', sans-serif;
+    }
+
+    .btn-admin:hover {
+      transform: scale(1.06);
+      box-shadow: 0 4px 20px rgba(177, 79, 255, .5);
+    }
+
+    .hamburger {
+      display: none;
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    #mobile-nav {
+      display: none;
+      flex-direction: column;
+      gap: .4rem;
+      position: fixed;
+      top: 68px;
+      left: 0;
+      right: 0;
+      background: rgba(13, 13, 26, .98);
+      backdrop-filter: blur(20px);
+      padding: 1.4rem;
+      z-index: 999;
+      border-bottom: 1px solid rgba(255, 255, 255, .07);
+    }
+
+    #mobile-nav.open {
+      display: flex;
+    }
+
+    #mobile-nav a {
+      color: rgba(255, 255, 255, .82);
+      text-decoration: none;
+      padding: .65rem 1rem;
+      border-radius: 12px;
+      font-weight: 800;
+      transition: .2s;
+    }
+
+    #mobile-nav a:hover {
+      background: rgba(255, 59, 92, .15);
+      color: var(--red);
+    }
+
+    /* ======= HERO ======= */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 88px 2rem 3rem;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(140deg, #0d0d1a 0%, #1a0833 45%, #0d1b2a 100%);
+    }
+
+    .hero-particles {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .star-dot {
+      position: absolute;
+      background: #fff;
+      border-radius: 50%;
+      animation: twinkle linear infinite;
+    }
+
+    @keyframes twinkle {
+
+      0%,
+      100% {
+        opacity: .15;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: 1;
+        transform: scale(1.8);
+      }
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3.5rem;
+      align-items: center;
+      max-width: 1200px;
+      width: 100%;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-text {}
+
+    .hero-pills {
+      display: flex;
+      gap: .5rem;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+    }
+
+    .hero-pill {
+      background: rgba(255, 255, 255, .1);
+      border: 1px solid rgba(255, 255, 255, .18);
+      color: #fff;
+      padding: .28rem .85rem;
+      border-radius: 50px;
+      font-size: .78rem;
+      font-weight: 800;
+    }
+
+    .hero-h1 {
+      font-family: 'Fredoka One', cursive;
+      font-size: clamp(2.4rem, 5.5vw, 4.6rem);
+      line-height: 1.08;
+      background: linear-gradient(135deg, #fff 0%, var(--yellow) 50%, var(--red) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: shimmer 3.5s ease-in-out infinite;
+    }
+
+    @keyframes shimmer {
+
+      0%,
+      100% {
+        filter: drop-shadow(0 0 8px rgba(255, 217, 61, .25));
+      }
+
+      50% {
+        filter: drop-shadow(0 0 28px rgba(255, 217, 61, .7));
+      }
+    }
+
+    .hero-sub {
+      color: rgba(255, 255, 255, .75);
+      font-size: 1.1rem;
+      font-weight: 700;
+      line-height: 1.65;
+      margin: 1rem 0 1.8rem;
+    }
+
+    .hero-category-pills {
+      display: flex;
+      gap: .6rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+
+    .hcat-pill {
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+      padding: .45rem 1rem;
+      border-radius: 50px;
+      font-size: .85rem;
+      font-weight: 800;
+      border: 2px solid;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .hcat-pill:hover {
+      transform: translateY(-3px) scale(1.05);
+    }
+
+    .hcat-pill.hw {
+      color: #FFD93D;
+      border-color: rgba(255, 217, 61, .4);
+      background: rgba(255, 217, 61, .08);
+    }
+
+    .hcat-pill.hw:hover {
+      background: #FFD93D;
+      color: #0d0d1a;
+    }
+
+    .hcat-pill.frame {
+      color: #B14FFF;
+      border-color: rgba(177, 79, 255, .4);
+      background: rgba(177, 79, 255, .08);
+    }
+
+    .hcat-pill.frame:hover {
+      background: #B14FFF;
+      color: #fff;
+    }
+
+    .hcat-pill.teddy {
+      color: #FF63A5;
+      border-color: rgba(255, 99, 165, .4);
+      background: rgba(255, 99, 165, .08);
+    }
+
+    .hcat-pill.teddy:hover {
+      background: #FF63A5;
+      color: #fff;
+    }
+
+    .hcat-pill.rideon {
+      color: #3DD68C;
+      border-color: rgba(61, 214, 140, .4);
+      background: rgba(61, 214, 140, .08);
+    }
+
+    .hcat-pill.rideon:hover {
+      background: #3DD68C;
+      color: #0d0d1a;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-p {
+      background: linear-gradient(135deg, var(--red), var(--orange));
+      color: #fff;
+      border: none;
+      padding: .92rem 2rem;
+      border-radius: 50px;
+      font-size: 1rem;
+      font-weight: 900;
+      cursor: pointer;
+      font-family: 'Nunito', sans-serif;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      box-shadow: 0 4px 22px rgba(255, 59, 92, .35);
+    }
+
+    .btn-p:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 8px 32px rgba(255, 59, 92, .55);
+    }
+
+    .btn-s {
+      background: rgba(255, 255, 255, .09);
+      border: 2px solid rgba(255, 255, 255, .22);
+      color: #fff;
+      padding: .92rem 2rem;
+      border-radius: 50px;
+      font-size: 1rem;
+      font-weight: 900;
+      cursor: pointer;
+      font-family: 'Nunito', sans-serif;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+    }
+
+    .btn-s:hover {
+      background: rgba(255, 255, 255, .18);
+      transform: translateY(-3px);
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 1.8rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .h-stat-num {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.9rem;
+      background: linear-gradient(135deg, var(--yellow), var(--red));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .h-stat-lbl {
+      color: rgba(255, 255, 255, .5);
+      font-size: .76rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+    }
+
+    .hero-img-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-glow {
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(177, 79, 255, .22) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-main-img {
+      width: 100%;
+      max-width: 520px;
+      border-radius: 28px;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, .55), 0 0 60px rgba(177, 79, 255, .2);
+      animation: float 4.5s ease-in-out infinite;
+      position: relative;
+      z-index: 2;
+      object-fit: cover;
+    }
+
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: translateY(0) rotate(-.8deg);
+      }
+
+      50% {
+        transform: translateY(-18px) rotate(.8deg);
+      }
+    }
+
+    .hero-ring {
+      position: absolute;
+      border-radius: 50%;
+      border: 2px solid;
+      animation: spin-r linear infinite;
+    }
+
+    .hero-ring1 {
+      width: 460px;
+      height: 460px;
+      border-color: rgba(255, 59, 92, .18);
+      animation-duration: 14s;
+    }
+
+    .hero-ring2 {
+      width: 560px;
+      height: 560px;
+      border-color: rgba(255, 217, 61, .1);
+      animation-duration: 20s;
+      animation-direction: reverse;
+    }
+
+    @keyframes spin-r {
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    .float-emoji {
+      position: absolute;
+      font-size: 2rem;
+      animation: orbit linear infinite;
+    }
+
+    @keyframes orbit {
+      0% {
+        transform: rotate(0deg) translateX(210px) rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg) translateX(210px) rotate(-360deg);
+      }
+    }
+
+    /* ======= TICKER ======= */
+    #ticker {
+      background: linear-gradient(135deg, var(--red), var(--orange));
+      padding: .65rem 0;
+      overflow: hidden;
+      position: relative;
+      z-index: 2;
+    }
+
+    .tick-inner {
+      display: flex;
+      gap: 3rem;
+      animation: tick 22s linear infinite;
+      white-space: nowrap;
+    }
+
+    .tick-item {
+      color: #fff;
+      font-weight: 900;
+      font-size: .88rem;
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+    }
+
+    @keyframes tick {
+      0% {
+        transform: translateX(0);
+      }
+
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+
+    /* ======= SECTION WRAPPER ======= */
+    section {
+      position: relative;
+      z-index: 2;
+    }
+
+    .sc {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .sh {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .stag {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--red), var(--orange));
+      color: #fff;
+      padding: .28rem 1.1rem;
+      border-radius: 50px;
+      font-size: .78rem;
+      font-weight: 900;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: .7rem;
+    }
+
+    .stitle {
+      font-family: 'Fredoka One', cursive;
+      font-size: clamp(1.8rem, 4vw, 2.9rem);
+      color: #fff;
+      line-height: 1.2;
+    }
+
+    .stitle span {
+      background: linear-gradient(135deg, var(--yellow), var(--red));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .ssub {
+      color: rgba(255, 255, 255, .55);
+      margin-top: .7rem;
+      font-size: .98rem;
+      font-weight: 700;
+    }
+
+    /* ======= CATEGORIES ======= */
+    #categories {
+      padding: 6rem 0;
+      background: linear-gradient(180deg, #0d0d1a, #12122a);
+    }
+
+    .cat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.2rem;
+    }
+
+    .cat-card {
+      background: var(--card);
+      border: 2px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem 1rem;
+      text-align: center;
+      cursor: pointer;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cat-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--g);
+      opacity: 0;
+      transition: .3s;
+    }
+
+    .cat-card:hover::after {
+      opacity: .14;
+    }
+
+    .cat-card:hover {
+      transform: translateY(-10px) scale(1.04);
+      border-color: rgba(255, 255, 255, .28);
+    }
+
+    .cat-card:hover .cat-ico {
+      transform: scale(1.35) rotate(12deg);
+    }
+
+    .cat-card.active {
+      border-color: var(--ac);
+    }
+
+    .cat-ico {
+      font-size: 3.2rem;
+      margin-bottom: .8rem;
+      display: block;
+      transition: .3s;
+    }
+
+    .cat-nm {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.1rem;
+      color: #fff;
+      margin-bottom: .2rem;
+    }
+
+    .cat-ct {
+      color: rgba(255, 255, 255, .45);
+      font-size: .78rem;
+      font-weight: 800;
+    }
+
+    /* ======= FILTERS ======= */
+    #filters {
+      padding: 3rem 0;
+      background: #0d0d1a;
+    }
+
+    .filter-row {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .flt-btn {
+      background: rgba(255, 255, 255, .07);
+      border: 2px solid rgba(255, 255, 255, .1);
+      color: #fff;
+      padding: .55rem 1.5rem;
+      border-radius: 50px;
+      font-family: 'Fredoka One', cursive;
+      font-size: .95rem;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .flt-btn:hover,
+    .flt-btn.on {
+      background: linear-gradient(135deg, var(--red), var(--orange));
+      border-color: transparent;
+      transform: scale(1.06);
+      box-shadow: 0 4px 20px rgba(255, 59, 92, .38);
+    }
+
+    #search-bar {
+      padding: 2rem 0 1rem;
+      background: #0d0d1a;
+    }
+
+    .srch-wrap {
+      max-width: 580px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .srch-inp {
+      width: 100%;
+      padding: .95rem 1.5rem .95rem 3.4rem;
+      background: rgba(255, 255, 255, .07);
+      border: 2px solid rgba(255, 255, 255, .1);
+      border-radius: 50px;
+      color: #fff;
+      font-size: 1rem;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 700;
+      outline: none;
+      transition: .3s;
+    }
+
+    .srch-inp::placeholder {
+      color: rgba(255, 255, 255, .35);
+    }
+
+    .srch-inp:focus {
+      border-color: var(--red);
+      background: rgba(255, 59, 92, .07);
+    }
+
+    .srch-ico {
+      position: absolute;
+      left: 1.2rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: rgba(255, 255, 255, .4);
+      font-size: 1.05rem;
+    }
+
+    .sort-btn {
+      position: absolute;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: rgba(255, 255, 255, .55);
+      font-size: .82rem;
+      cursor: pointer;
+      font-family: 'Nunito', sans-serif;
+      display: flex;
+      align-items: center;
+      gap: .3rem;
+      font-weight: 800;
+    }
+
+    /* ======= SHOP ======= */
+    #shop {
+      padding: 6rem 0;
+      background: linear-gradient(180deg, #0d0d1a, #12122a);
+    }
+
+    .prod-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(275px, 1fr));
+      gap: 1.8rem;
+    }
+
+    /* PRODUCT CARD */
+    .pcard {
+      background: var(--card);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      cursor: pointer;
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .pcard:hover {
+      transform: translateY(-11px) scale(1.025);
+      border-color: var(--red);
+      box-shadow: 0 22px 60px rgba(255, 59, 92, .18);
+    }
+
+    .pcard.hidden {
+      display: none;
+    }
+
+    .pcard-img-wrap {
+      position: relative;
+      overflow: hidden;
+      height: 230px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, .06), rgba(255, 255, 255, .02));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .pcard-img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      padding: 1rem;
+      transition: transform .5s cubic-bezier(.34, 1.56, .64, 1);
+    }
+
+    .pcard:hover .pcard-img {
+      transform: scale(1.12) rotate(2deg);
+    }
+
+    .pcard-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      color: #fff;
+      font-size: .7rem;
+      font-weight: 900;
+      padding: .22rem .65rem;
+      border-radius: 50px;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+    }
+
+    .pcard-wish {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: rgba(255, 255, 255, .1);
+      border: none;
+      color: #fff;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: .95rem;
+      transition: .3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(8px);
+    }
+
+    .pcard-wish:hover,
+    .pcard-wish.on {
+      background: var(--red);
+    }
+
+    .pcard-wish.on {
+      animation: heart-pop .3s ease;
+    }
+
+    @keyframes heart-pop {
+
+      0%,
+      100% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.45);
+      }
+    }
+
+    .qview {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(13, 13, 26, .92);
+      border: none;
+      color: #fff;
+      padding: .55rem;
+      font-size: .8rem;
+      font-weight: 900;
+      cursor: pointer;
+      font-family: 'Nunito', sans-serif;
+      opacity: 0;
+      transition: .3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .4rem;
+      backdrop-filter: blur(4px);
+    }
+
+    .pcard:hover .qview {
+      opacity: 1;
+    }
+
+    .pcard-info {
+      padding: 1.2rem;
+    }
+
+    .pcard-cat {
+      color: var(--yellow);
+      font-size: .73rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+      margin-bottom: .3rem;
+    }
+
+    .pcard-name {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.2rem;
+      color: #fff;
+      margin-bottom: .25rem;
+      line-height: 1.2;
+    }
+
+    .pcard-desc {
+      color: rgba(255, 255, 255, .52);
+      font-size: .8rem;
+      font-weight: 700;
+      line-height: 1.55;
+      margin-bottom: .7rem;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .pcard-stars {
+      color: var(--yellow);
+      font-size: .82rem;
+      margin-bottom: .6rem;
+    }
+
+    .pcard-stars span {
+      color: rgba(255, 255, 255, .4);
+      font-size: .74rem;
+      margin-left: .3rem;
+    }
+
+    .pcard-pr {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: .4rem;
+    }
+
+    .pcard-price {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.5rem;
+      color: var(--red);
+    }
+
+    .pcard-orig {
+      color: rgba(255, 255, 255, .32);
+      font-size: .88rem;
+      text-decoration: line-through;
+      margin-left: .3rem;
+    }
+
+    .pcard-disc {
+      background: rgba(61, 214, 140, .18);
+      color: var(--green);
+      font-size: .72rem;
+      font-weight: 900;
+      padding: .18rem .5rem;
+      border-radius: 50px;
+    }
+
+    .btn-cart {
+      width: 100%;
+      margin-top: .9rem;
+      background: linear-gradient(135deg, var(--red), var(--orange));
+      border: none;
+      color: #fff;
+      padding: .75rem;
+      border-radius: 50px;
+      font-size: .9rem;
+      font-weight: 900;
+      cursor: pointer;
+      transition: var(--transition);
+      font-family: 'Nunito', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .45rem;
+    }
+
+    .btn-cart:hover {
+      transform: scale(1.04);
+      box-shadow: 0 4px 20px rgba(255, 59, 92, .45);
+    }
+
+    .btn-cart:active {
+      transform: scale(.97);
+    }
+
+    .no-prod {
+      grid-column: 1/-1;
+      text-align: center;
+      padding: 4rem;
+      color: rgba(255, 255, 255, .35);
+      font-size: 1.05rem;
+    }
+
+    .no-prod i {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    #load-more {
+      text-align: center;
+      margin-top: 2.5rem;
+    }
+
+    /* ======= FEATURED STRIP ======= */
+    #featured {
+      padding: 5rem 0;
+      background: #0a0a15;
+    }
+
+    .feat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .feat-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.8rem 1.4rem;
+      text-align: center;
+      transition: var(--transition);
+    }
+
+    .feat-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(255, 255, 255, .2);
+    }
+
+    .feat-ico {
+      width: 62px;
+      height: 62px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      margin: 0 auto 1rem;
+    }
+
+    .feat-t {
+      color: #fff;
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.05rem;
+      margin-bottom: .4rem;
+    }
+
+    .feat-d {
+      color: rgba(255, 255, 255, .48);
+      font-size: .82rem;
+      font-weight: 700;
+      line-height: 1.55;
+    }
+
+    /* ======= DEALS ======= */
+    #deals {
+      padding: 6rem 0;
+      background: linear-gradient(135deg, #1a0833, #0d0d1a);
+    }
+
+    .deal-box {
+      background: linear-gradient(135deg, rgba(255, 59, 92, .12), rgba(255, 107, 43, .08));
+      border: 1px solid rgba(255, 59, 92, .25);
+      border-radius: 28px;
+      padding: 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .deal-box::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -8%;
+      width: 360px;
+      height: 360px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 59, 92, .18), transparent 70%);
+    }
+
+    .deal-box h2 {
+      font-family: 'Fredoka One', cursive;
+      font-size: 2.4rem;
+      color: #fff;
+      margin-bottom: .4rem;
+    }
+
+    .deal-box p {
+      color: rgba(255, 255, 255, .65);
+      font-weight: 700;
+    }
+
+    .countdown {
+      display: flex;
+      gap: .9rem;
+      margin-top: 1.4rem;
+    }
+
+    .cbox {
+      background: rgba(255, 255, 255, .1);
+      border: 1px solid rgba(255, 255, 255, .13);
+      border-radius: 12px;
+      padding: .75rem 1.1rem;
+      text-align: center;
+      min-width: 66px;
+    }
+
+    .cnum {
+      font-family: 'Fredoka One', cursive;
+      font-size: 2rem;
+      color: var(--yellow);
+      display: block;
+    }
+
+    .clbl {
+      color: rgba(255, 255, 255, .45);
+      font-size: .68rem;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    /* ======= TESTIMONIALS ======= */
+    #testimonials {
+      padding: 6rem 0;
+      background: #0d0d1a;
+    }
+
+    .test-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(275px, 1fr));
+      gap: 1.4rem;
+    }
+
+    .tcard {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.8rem;
+      transition: var(--transition);
+    }
+
+    .tcard:hover {
+      transform: translateY(-5px);
+      border-color: rgba(255, 255, 255, .2);
+    }
+
+    .t-stars {
+      color: var(--yellow);
+      margin-bottom: .7rem;
+    }
+
+    .t-text {
+      color: rgba(255, 255, 255, .7);
+      font-size: .88rem;
+      font-weight: 700;
+      line-height: 1.65;
+      margin-bottom: .9rem;
+    }
+
+    .t-auth {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+    }
+
+    .t-av {
+      width: 43px;
+      height: 43px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--red), var(--purple));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Fredoka One', cursive;
+      color: #fff;
+      font-size: 1.05rem;
+    }
+
+    .t-nm {
+      color: #fff;
+      font-weight: 900;
+      font-size: .88rem;
+    }
+
+    .t-rl {
+      color: rgba(255, 255, 255, .38);
+      font-size: .76rem;
+    }
+
+    /* ======= NEWSLETTER ======= */
+    #nl {
+      padding: 5rem 0;
+      background: linear-gradient(135deg, #1a0833, #0d1b2a);
+    }
+
+    .nl-box {
+      max-width: 560px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .nl-box h2 {
+      font-family: 'Fredoka One', cursive;
+      font-size: 2.1rem;
+      color: #fff;
+      margin-bottom: .7rem;
+    }
+
+    .nl-box p {
+      color: rgba(255, 255, 255, .55);
+      margin-bottom: 1.6rem;
+      font-weight: 700;
+    }
+
+    .nl-form {
+      display: flex;
+      gap: .7rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .nl-inp {
+      flex: 1;
+      min-width: 210px;
+      padding: .82rem 1.4rem;
+      background: rgba(255, 255, 255, .07);
+      border: 2px solid rgba(255, 255, 255, .1);
+      border-radius: 50px;
+      color: #fff;
+      font-size: .92rem;
+      font-family: 'Nunito', sans-serif;
+      outline: none;
+      transition: .3s;
+    }
+
+    .nl-inp::placeholder {
+      color: rgba(255, 255, 255, .35);
+    }
+
+    .nl-inp:focus {
+      border-color: var(--red);
+    }
+
+    .btn-sub {
+      background: linear-gradient(135deg, var(--red), var(--orange));
+      border: none;
+      color: #fff;
+      padding: .82rem 1.8rem;
+      border-radius: 50px;
+      font-size: .92rem;
+      font-weight: 900;
+      cursor: pointer;
+      font-family: 'Nunito', sans-serif;
+      transition: var(--transition);
+    }
+
+    .btn-sub:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 20px rgba(255, 59, 92, .45);
+    }
+
+    /* ======= FOOTER ======= */
+    footer {
+      background: #080812;
+      padding: 4rem 2rem 2rem;
+      border-top: 1px solid rgba(255, 255, 255, .05);
+    }
+
+    .foot-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .foot-logo {
+      font-family: 'Righteous', sans-serif;
+      font-weight: 900;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-size: 2rem;
+      background: linear-gradient(135deg, var(--red), var(--yellow));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: 0 0 15px rgba(255, 59, 92, 0.25);
+      transform: skewX(-8deg);
+      display: inline-block;
+    }
+
+    .foot-brand p {
+      color: rgba(255, 255, 255, .45);
+      font-size: .83rem;
+      margin-top: .7rem;
+      font-weight: 700;
+      line-height: 1.65;
+    }
+
+    .socials {
+      display: flex;
+      gap: .5rem;
+      margin-top: 1.1rem;
+    }
+
+    .soc {
+      width: 37px;
+      height: 37px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, .07);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255, 255, 255, .55);
+      font-size: .88rem;
+      cursor: pointer;
+      transition: var(--transition);
+      text-decoration: none;
+    }
+
+    .soc:hover {
+      background: var(--red);
+      color: #fff;
+      transform: scale(1.15);
+    }
+
+    .fcol h4 {
+      color: #fff;
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.05rem;
+      margin-bottom: .9rem;
+    }
+
+    .fcol ul {
+      list-style: none;
+    }
+
+    .fcol li {
+      margin-bottom: .5rem;
+    }
+
+    .fcol a {
+      color: rgba(255, 255, 255, .45);
+      text-decoration: none;
+      font-size: .83rem;
+      font-weight: 700;
+      transition: .2s;
+    }
+
+    .fcol a:hover {
+      color: var(--red);
+    }
+
+    .foot-bottom {
+      border-top: 1px solid rgba(255, 255, 255, .05);
+      margin-top: 3rem;
+      padding-top: 1.4rem;
+      text-align: center;
+      color: rgba(255, 255, 255, .28);
+      font-size: .8rem;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* ======= CART SIDEBAR ======= */
+    #cart-ov {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, .6);
+      z-index: 2000;
+      opacity: 0;
+      pointer-events: none;
+      transition: .3s;
+      backdrop-filter: blur(5px);
+    }
+
+    #cart-ov.on {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    #cart-sb {
+      position: fixed;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      width: min(420px, 100%);
+      background: #12122a;
+      z-index: 2001;
+      transform: translateX(100%);
+      transition: .4s cubic-bezier(.34, 1.2, .64, 1);
+      display: flex;
+      flex-direction: column;
+      box-shadow: -10px 0 50px rgba(0, 0, 0, .4);
+      border-left: 1px solid rgba(255, 255, 255, .07);
+    }
+
+    #cart-sb.on {
+      transform: translateX(0);
+    }
+
+    .sb-head {
+      padding: 1.4rem;
+      border-bottom: 1px solid rgba(255, 255, 255, .07);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .sb-head h3 {
+      font-family: 'Fredoka One', cursive;
+      color: #fff;
+      font-size: 1.35rem;
+    }
+
+    .sb-close {
+      background: none;
+      border: none;
+      color: rgba(255, 255, 255, .55);
+      font-size: 1.4rem;
+      cursor: pointer;
+      transition: .2s;
+    }
+
+    .sb-close:hover {
+      color: var(--red);
+    }
+
+    .sb-items {
+      flex: 1;
+      overflow-y: auto;
+      padding: 1.4rem;
+      display: flex;
+      flex-direction: column;
+      gap: .9rem;
+    }
+
+    .citem {
+      background: rgba(255, 255, 255, .04);
+      border: 1px solid rgba(255, 255, 255, .07);
+      border-radius: 16px;
+      padding: .9rem;
+      display: flex;
+      gap: .9rem;
+      align-items: center;
+      animation: sl-in .3s ease;
+    }
+
+    @keyframes sl-in {
+      from {
+        transform: translateX(30px);
+        opacity: 0
+      }
+
+      to {
+        transform: translateX(0);
+        opacity: 1
+      }
+    }
+
+    .citem-img {
+      width: 68px;
+      height: 68px;
+      object-fit: contain;
+      background: rgba(255, 255, 255, .05);
+      border-radius: 10px;
+      padding: 4px;
+    }
+
+    .citem-info {
+      flex: 1;
+    }
+
+    .citem-name {
+      color: #fff;
+      font-weight: 900;
+      font-size: .88rem;
+      margin-bottom: .15rem;
+    }
+
+    .citem-price {
+      color: var(--red);
+      font-family: 'Fredoka One', cursive;
+      font-size: .98rem;
+    }
+
+    .qty-row {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      margin-top: .45rem;
+    }
+
+    .qbtn {
+      background: rgba(255, 255, 255, .1);
+      border: none;
+      color: #fff;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: .88rem;
+      transition: .2s;
+    }
+
+    .qbtn:hover {
+      background: var(--red);
+    }
+
+    .qnum {
+      color: #fff;
+      font-weight: 900;
+      min-width: 20px;
+      text-align: center;
+    }
+
+    .crm {
+      background: none;
+      border: none;
+      color: rgba(255, 255, 255, .3);
+      cursor: pointer;
+      font-size: .95rem;
+      transition: .2s;
+    }
+
+    .crm:hover {
+      color: var(--red);
+    }
+
+    .c-empty {
+      text-align: center;
+      padding: 3rem;
+      color: rgba(255, 255, 255, .3);
+    }
+
+    .c-empty i {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .sb-foot {
+      padding: 1.4rem;
+      border-top: 1px solid rgba(255, 255, 255, .07);
+      background: #0d0d22;
+    }
+
+    .tot-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: .4rem;
+    }
+
+    .tot-row span {
+      color: rgba(255, 255, 255, .55);
+      font-weight: 800;
+    }
+
+    .tot-row strong {
+      color: #fff;
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.15rem;
+    }
+
+    .btn-chk {
+      width: 100%;
+      background: linear-gradient(135deg, var(--green), #2ecc71);
+      border: none;
+      color: #fff;
+      padding: .95rem;
+      border-radius: 50px;
+      font-size: .98rem;
+      font-weight: 900;
+      cursor: pointer;
+      font-family: 'Nunito', sans-serif;
+      transition: var(--transition);
+      margin-top: .9rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .5rem;
+    }
+
+    .btn-chk:hover {
+      transform: scale(1.03);
+      box-shadow: 0 4px 20px rgba(61, 214, 140, .45);
+    }
+
+    /* ======= WISHLIST ======= */
+    #wish-ov {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, .6);
+      z-index: 2000;
+      opacity: 0;
+      pointer-events: none;
+      transition: .3s;
+      backdrop-filter: blur(5px);
+    }
+
+    #wish-ov.on {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    #wish-sb {
+      position: fixed;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      width: min(420px, 100%);
+      background: #12122a;
+      z-index: 2001;
+      transform: translateX(100%);
+      transition: .4s cubic-bezier(.34, 1.2, .64, 1);
+      display: flex;
+      flex-direction: column;
+      box-shadow: -10px 0 50px rgba(0, 0, 0, .4);
+      border-left: 1px solid rgba(255, 255, 255, .07);
+    }
+
+    #wish-sb.on {
+      transform: translateX(0);
+    }
+
+    /* ======= PRODUCT MODAL ======= */
+    #pm-ov {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, .82);
+      z-index: 3000;
+      opacity: 0;
+      pointer-events: none;
+      transition: .3s;
+      backdrop-filter: blur(10px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+
+    #pm-ov.on {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    #pm {
+      background: #13132a;
+      border-radius: 28px;
+      width: min(800px, 100%);
+      max-height: 90vh;
+      overflow-y: auto;
+      transform: scale(.88);
+      transition: .4s cubic-bezier(.34, 1.2, .64, 1);
+      border: 1px solid rgba(255, 255, 255, .09);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, .6);
+    }
+
+    #pm.on {
+      transform: scale(1);
+    }
+
+    .pm-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+    }
+
+    .pm-img-w {
+      background: linear-gradient(135deg, rgba(255, 255, 255, .05), rgba(255, 255, 255, .02));
+      border-radius: 28px 0 0 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      min-height: 300px;
+    }
+
+    .pm-img {
+      width: 100%;
+      max-height: 310px;
+      object-fit: contain;
+    }
+
+    .pm-cnt {
+      padding: 2.4rem;
+    }
+
+    .pm-close {
+      float: right;
+      background: rgba(255, 255, 255, .1);
+      border: none;
+      color: #fff;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: .95rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: .2s;
+    }
+
+    .pm-close:hover {
+      background: var(--red);
+    }
+
+    .pm-tag {
+      color: var(--yellow);
+      font-size: .76rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: .4rem;
+      display: block;
+    }
+
+    .pm-name {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.9rem;
+      color: #fff;
+      margin: .4rem 0;
+      line-height: 1.2;
+    }
+
+    .pm-desc {
+      color: rgba(255, 255, 255, .6);
+      font-size: .88rem;
+      font-weight: 700;
+      line-height: 1.72;
+      margin-bottom: 1.1rem;
+    }
+
+    .pm-pr-row {
+      display: flex;
+      align-items: center;
+      gap: .7rem;
+      margin-bottom: 1.3rem;
+      flex-wrap: wrap;
+    }
+
+    .pm-price {
+      font-family: 'Fredoka One', cursive;
+      font-size: 2.1rem;
+      color: var(--red);
+    }
+
+    .pm-orig {
+      color: rgba(255, 255, 255, .28);
+      font-size: 1rem;
+      text-decoration: line-through;
+    }
+
+    .pm-disc {
+      background: rgba(61, 214, 140, .18);
+      color: var(--green);
+      font-weight: 900;
+      padding: .18rem .65rem;
+      border-radius: 50px;
+      font-size: .8rem;
+    }
+
+    .pm-specs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: .7rem;
+      margin-bottom: 1.3rem;
+    }
+
+    .spec {
+      background: rgba(255, 255, 255, .04);
+      border-radius: 10px;
+      padding: .55rem .85rem;
+    }
+
+    .spec-l {
+      color: rgba(255, 255, 255, .38);
+      font-size: .7rem;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .spec-v {
+      color: #fff;
+      font-weight: 900;
+      font-size: .88rem;
+      margin-top: .08rem;
+    }
+
+    .pm-acts {
+      display: flex;
+      gap: .7rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-pm-cart {
+      flex: 1;
+      background: linear-gradient(135deg, var(--red), var(--orange));
+      border: none;
+      color: #fff;
+      padding: .88rem;
+      border-radius: 50px;
+      font-size: .98rem;
+      font-weight: 900;
+      cursor: pointer;
+      font-family: 'Nunito', sans-serif;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .45rem;
+    }
+
+    .btn-pm-cart:hover {
+      transform: scale(1.03);
+    }
+
+    .btn-pm-wish {
+      background: rgba(255, 255, 255, .08);
+      border: 2px solid rgba(255, 255, 255, .14);
+      color: #fff;
+      padding: .88rem 1.1rem;
+      border-radius: 50px;
+      font-size: 1.05rem;
+      cursor: pointer;
+      transition: .3s;
+    }
+
+    .btn-pm-wish:hover {
+      background: var(--red);
+      border-color: var(--red);
+    }
+
+    /* ======= ADMIN LOGIN ======= */
+    #al-ov {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, .88);
+      z-index: 4000;
+      opacity: 0;
+      pointer-events: none;
+      transition: .3s;
+      backdrop-filter: blur(14px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+
+    #al-ov.on {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    #al {
+      background: linear-gradient(135deg, #13132a, #1a1040);
+      border-radius: 28px;
+      width: min(470px, 100%);
+      transform: scale(.88) translateY(18px);
+      transition: .4s cubic-bezier(.34, 1.2, .64, 1);
+      border: 1px solid rgba(177, 79, 255, .28);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, .7), 0 0 60px rgba(177, 79, 255, .1);
+      overflow: hidden;
+      position: relative;
+    }
+
+    #al.on {
+      transform: scale(1) translateY(0);
+    }
+
+    .al-hd {
+      background: linear-gradient(135deg, rgba(177, 79, 255, .18), rgba(123, 47, 255, .12));
+      padding: 2.4rem 2rem 1.8rem;
+      text-align: center;
+      border-bottom: 1px solid rgba(255, 255, 255, .07);
+    }
+
+    .al-ico {
+      width: 68px;
+      height: 68px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--purple), #7b2fff);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.9rem;
+      margin: 0 auto .9rem;
+      box-shadow: 0 8px 30px rgba(177, 79, 255, .4);
+      animation: al-glow 2s ease-in-out infinite;
+    }
+
+    @keyframes al-glow {
+
+      0%,
+      100% {
+        box-shadow: 0 8px 30px rgba(177, 79, 255, .4);
+      }
+
+      50% {
+        box-shadow: 0 8px 50px rgba(177, 79, 255, .82);
+      }
+    }
+
+    .al-hd h3 {
+      font-family: 'Fredoka One', cursive;
+      color: #fff;
+      font-size: 1.75rem;
+    }
+
+    .al-hd p {
+      color: rgba(255, 255, 255, .45);
+      font-size: .88rem;
+      margin-top: .35rem;
+      font-weight: 700;
+    }
+
+    .al-bd {
+      padding: 2rem;
+    }
+
+    .fg {
+      margin-bottom: 1.1rem;
+    }
+
+    .fg label {
+      color: rgba(255, 255, 255, .65);
+      font-size: .82rem;
+      font-weight: 800;
+      display: block;
+      margin-bottom: .45rem;
+    }
+
+    .fi {
+      width: 100%;
+      padding: .82rem 1rem;
+      background: rgba(255, 255, 255, .06);
+      border: 2px solid rgba(255, 255, 255, .1);
+      border-radius: 12px;
+      color: #fff;
+      font-size: .92rem;
+      font-family: 'Nunito', sans-serif;
+      outline: none;
+      transition: .3s;
+    }
+
+    .fi:focus {
+      border-color: var(--purple);
+      background: rgba(177, 79, 255, .07);
+    }
+
+    .fi::placeholder {
+      color: rgba(255, 255, 255, .28);
+    }
+
+    .al-err {
+      color: var(--red);
+      font-size: .8rem;
+      font-weight: 800;
+      margin-top: .4rem;
+      display: none;
+    }
+
+    .btn-login {
+      width: 100%;
+      background: linear-gradient(135deg, var(--purple), #7b2fff);
+      border: none;
+      color: #fff;
+      padding: .95rem;
+      border-radius: 50px;
+      font-size: .98rem;
+      font-weight: 900;
+      cursor: pointer;
+      font-family: 'Nunito', sans-serif;
+      transition: var(--transition);
+      margin-top: .4rem;
+      box-shadow: 0 4px 20px rgba(177, 79, 255, .38);
+    }
+
+    .btn-login:hover {
+      transform: scale(1.03);
+      box-shadow: 0 8px 30px rgba(177, 79, 255, .6);
+    }
+
+    .al-hint {
+      text-align: center;
+      color: rgba(255, 255, 255, .28);
+      font-size: .76rem;
+      margin-top: .9rem;
+      font-weight: 800;
+    }
+
+    .mct {
+      position: absolute;
+      top: 1.1rem;
+      right: 1.1rem;
+      background: rgba(255, 255, 255, .1);
+      border: none;
+      color: #fff;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: .88rem;
+      transition: .2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .mct:hover {
+      background: var(--red);
+    }
+
+    /* ======= ADMIN DASHBOARD ======= */
+    #adm {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 5000;
+      background: #08081a;
+      overflow-y: auto;
+      animation: fd-in .4s ease;
+    }
+
+    #adm.vis {
+      display: block;
+    }
+
+    @keyframes fd-in {
+      from {
+        opacity: 0
+      }
+
+      to {
+        opacity: 1
+      }
+    }
+
+    .adm-hd {
+      background: linear-gradient(135deg, #13132a, #1a1040);
+      border-bottom: 1px solid rgba(177, 79, 255, .18);
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .adm-logo {
+      font-family: 'Righteous', sans-serif;
+      font-size: 1.55rem;
+      font-weight: 900;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      background: linear-gradient(135deg, var(--purple), var(--red));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: 0 0 10px rgba(177, 79, 255, 0.2);
+      transform: skewX(-8deg);
+      display: inline-block;
+    }
+
+    .adm-tag {
+      background: linear-gradient(135deg, var(--purple), #7b2fff);
+      color: #fff;
+      padding: .18rem .75rem;
+      border-radius: 50px;
+      font-size: .7rem;
+      font-weight: 900;
+    }
+
+    .btn-logout {
+      background: rgba(255, 59, 92, .14);
+      border: 1px solid rgba(255, 59, 92, .28);
+      color: var(--red);
+      padding: .45rem 1.1rem;
+      border-radius: 50px;
+      font-size: .82rem;
+      font-weight: 900;
+      cursor: pointer;
+      transition: .2s;
+      font-family: 'Nunito', sans-serif;
+    }
+
+    .btn-logout:hover {
+      background: var(--red);
+      color: #fff;
+    }
+
+    .adm-tabs {
+      display: flex;
+      gap: .4rem;
+      padding: 0 2rem;
+      border-bottom: 1px solid rgba(255, 255, 255, .06);
+      flex-wrap: wrap;
+      margin-top: 1.3rem;
+    }
+
+    .adm-tab {
+      background: none;
+      border: none;
+      color: rgba(255, 255, 255, .45);
+      padding: .75rem 1.4rem;
+      font-size: .88rem;
+      font-weight: 900;
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      transition: .2s;
+      font-family: 'Nunito', sans-serif;
+      display: flex;
+      align-items: center;
+      gap: .45rem;
+      white-space: nowrap;
+    }
+
+    .adm-tab.on {
+      color: #fff;
+      border-bottom-color: var(--purple);
+    }
+
+    .adm-tab:hover {
+      color: #fff;
+    }
+
+    .adm-panel {
+      padding: 2rem;
+      display: none;
+    }
+
+    .adm-panel.on {
+      display: block;
+    }
+
+    /* Stats */
+    .sg {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
+      gap: 1.1rem;
+      margin-bottom: 2rem;
+    }
+
+    .sc2 {
+      background: rgba(255, 255, 255, .04);
+      border: 1px solid rgba(255, 255, 255, .08);
+      border-radius: 16px;
+      padding: 1.4rem;
+      display: flex;
+      align-items: center;
+      gap: .9rem;
+    }
+
+    .si {
+      width: 50px;
+      height: 50px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.45rem;
+      flex-shrink: 0;
+    }
+
+    .sn {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.75rem;
+      color: #fff;
+      line-height: 1;
+    }
+
+    .sl {
+      color: rgba(255, 255, 255, .38);
+      font-size: .75rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      margin-top: .15rem;
+    }
+
+    /* Form */
+    .afc {
+      background: rgba(255, 255, 255, .03);
+      border: 1px solid rgba(255, 255, 255, .07);
+      border-radius: 18px;
+      padding: 2rem;
+    }
+
+    .afc h3 {
+      font-family: 'Fredoka One', cursive;
+      color: #fff;
+      font-size: 1.35rem;
+      margin-bottom: 1.4rem;
+      display: flex;
+      align-items: center;
+      gap: .55rem;
+    }
+
+    .fg2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(215px, 1fr));
+      gap: 1rem;
+    }
+
+    .fg2-full {
+      grid-column: 1/-1;
+    }
+
+    .afl {
+      color: rgba(255, 255, 255, .62);
+      font-size: .8rem;
+      font-weight: 900;
+      display: block;
+      margin-bottom: .38rem;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+    }
+
+    .afi,
+    .afs,
+    .afta {
+      width: 100%;
+      padding: .78rem 1rem;
+      background: rgba(255, 255, 255, .06);
+      border: 2px solid rgba(255, 255, 255, .09);
+      border-radius: 12px;
+      color: #fff;
+      font-size: .88rem;
+      font-family: 'Nunito', sans-serif;
+      outline: none;
+      transition: .3s;
+    }
+
+    .afi:focus,
+    .afs:focus,
+    .afta:focus {
+      border-color: var(--purple);
+    }
+
+    .afi::placeholder,
+    .afta::placeholder {
+      color: rgba(255, 255, 255, .28);
+    }
+
+    .afs option {
+      background: #13132a;
+    }
+
+    .afta {
+      resize: vertical;
+      min-height: 85px;
+    }
+
+    .img-prev {
+      width: 110px;
+      height: 110px;
+      object-fit: contain;
+      background: rgba(255, 255, 255, .05);
+      border-radius: 12px;
+      border: 2px dashed rgba(255, 255, 255, .14);
+      padding: 5px;
+      display: none;
+      margin-top: .7rem;
+    }
+
+    .img-prev.vis {
+      display: block;
+    }
+
+    .btn-pub {
+      background: linear-gradient(135deg, var(--green), #2ecc71);
+      border: none;
+      color: #fff;
+      padding: .88rem 1.9rem;
+      border-radius: 50px;
+      font-size: .98rem;
+      font-weight: 900;
+      cursor: pointer;
+      font-family: 'Nunito', sans-serif;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: .45rem;
+      margin-top: 1.4rem;
+    }
+
+    .btn-pub:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 20px rgba(61, 214, 140, .45);
+    }
+
+    .btn-draft {
+      background: rgba(255, 255, 255, .07);
+      border: 2px solid rgba(255, 255, 255, .1);
+      color: #fff;
+      padding: .88rem 1.9rem;
+      border-radius: 50px;
+      font-size: .98rem;
+      font-weight: 900;
+      cursor: pointer;
+      font-family: 'Nunito', sans-serif;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: .45rem;
+      margin-top: 1.4rem;
+    }
+
+    .btn-draft:hover {
+      border-color: var(--purple);
+      background: rgba(177, 79, 255, .1);
+    }
+
+    /* Table */
+    .adm-ph {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.4rem;
+      flex-wrap: wrap;
+      gap: .8rem;
+    }
+
+    .adm-srch {
+      padding: .55rem 1rem;
+      background: rgba(255, 255, 255, .06);
+      border: 2px solid rgba(255, 255, 255, .1);
+      border-radius: 50px;
+      color: #fff;
+      font-size: .88rem;
+      font-family: 'Nunito', sans-serif;
+      outline: none;
+      transition: .3s;
+    }
+
+    .adm-srch:focus {
+      border-color: var(--purple);
+    }
+
+    .atbl {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .atbl th {
+      color: rgba(255, 255, 255, .45);
+      font-size: .76rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      padding: .75rem 1rem;
+      text-align: left;
+      border-bottom: 1px solid rgba(255, 255, 255, .06);
+    }
+
+    .atbl td {
+      padding: .85rem 1rem;
+      border-bottom: 1px solid rgba(255, 255, 255, .04);
+      vertical-align: middle;
+    }
+
+    .at-img {
+      width: 50px;
+      height: 50px;
+      object-fit: contain;
+      background: rgba(255, 255, 255, .05);
+      border-radius: 9px;
+      padding: 3px;
+    }
+
+    .at-name {
+      color: #fff;
+      font-weight: 900;
+      font-size: .88rem;
+    }
+
+    .at-price {
+      color: var(--red);
+      font-family: 'Fredoka One', cursive;
+      font-size: .98rem;
+    }
+
+    .spill {
+      padding: .18rem .65rem;
+      border-radius: 50px;
+      font-size: .7rem;
+      font-weight: 900;
+    }
+
+    .spill.pub {
+      background: rgba(61, 214, 140, .18);
+      color: var(--green);
+    }
+
+    .spill.dft {
+      background: rgba(255, 255, 255, .07);
+      color: rgba(255, 255, 255, .45);
+    }
+
+    .act-row {
+      display: flex;
+      gap: .35rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-ed {
+      background: rgba(77, 143, 255, .14);
+      border: 1px solid rgba(77, 143, 255, .28);
+      color: var(--blue);
+      padding: .28rem .65rem;
+      border-radius: 50px;
+      font-size: .72rem;
+      font-weight: 900;
+      cursor: pointer;
+      transition: .2s;
+      font-family: 'Nunito', sans-serif;
+    }
+
+    .btn-ed:hover {
+      background: var(--blue);
+      color: #fff;
+    }
+
+    .btn-tg {
+      background: rgba(61, 214, 140, .14);
+      border: 1px solid rgba(61, 214, 140, .28);
+      color: var(--green);
+      padding: .28rem .65rem;
+      border-radius: 50px;
+      font-size: .72rem;
+      font-weight: 900;
+      cursor: pointer;
+      transition: .2s;
+      font-family: 'Nunito', sans-serif;
+    }
+
+    .btn-tg:hover {
+      background: var(--green);
+      color: #0d0d1a;
+    }
+
+    .btn-dl {
+      background: rgba(255, 59, 92, .14);
+      border: 1px solid rgba(255, 59, 92, .28);
+      color: var(--red);
+      padding: .28rem .65rem;
+      border-radius: 50px;
+      font-size: .72rem;
+      font-weight: 900;
+      cursor: pointer;
+      transition: .2s;
+      font-family: 'Nunito', sans-serif;
+    }
+
+    .btn-dl:hover {
+      background: var(--red);
+      color: #fff;
+    }
+
+    /* Orders */
+    .ocard {
+      background: rgba(255, 255, 255, .03);
+      border: 1px solid rgba(255, 255, 255, .07);
+      border-radius: 14px;
+      padding: 1.1rem;
+      margin-bottom: .9rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: .9rem;
+    }
+
+    .o-id {
+      color: rgba(255, 255, 255, .38);
+      font-size: .76rem;
+      font-weight: 900;
+    }
+
+    .o-itms {
+      color: #fff;
+      font-weight: 900;
+      font-size: .88rem;
+      margin-top: .18rem;
+    }
+
+    .o-tot {
+      color: var(--red);
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.15rem;
+    }
+
+    /* ======= EDIT MODAL ======= */
+    #em-ov {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, .88);
+      z-index: 6000;
+      opacity: 0;
+      pointer-events: none;
+      transition: .3s;
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+
+    #em-ov.on {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    #em {
+      background: #13132a;
+      border-radius: 22px;
+      width: min(600px, 100%);
+      max-height: 90vh;
+      overflow-y: auto;
+      transform: scale(.9);
+      transition: .4s;
+      border: 1px solid rgba(177, 79, 255, .2);
+      padding: 2rem;
+    }
+
+    #em.on {
+      transform: scale(1);
+    }
+
+    #em h3 {
+      font-family: 'Fredoka One', cursive;
+      color: #fff;
+      font-size: 1.35rem;
+      margin-bottom: 1.4rem;
+    }
+
+    /* ======= TOAST ======= */
+    #toast-c {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column-reverse;
+      gap: .65rem;
+    }
+
+    .toast {
+      background: #13132a;
+      border: 1px solid rgba(255, 255, 255, .09);
+      border-radius: 13px;
+      padding: .88rem 1.2rem;
+      color: #fff;
+      font-weight: 800;
+      font-size: .88rem;
+      display: flex;
+      align-items: center;
+      gap: .65rem;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, .4);
+      animation: t-in .4s cubic-bezier(.34, 1.56, .64, 1);
+      border-left: 4px solid var(--red);
+      max-width: 310px;
+    }
+
+    .toast.suc {
+      border-left-color: var(--green);
+    }
+
+    .toast.inf {
+      border-left-color: var(--blue);
+    }
+
+    @keyframes t-in {
+      from {
+        transform: translateX(100px);
+        opacity: 0
+      }
+
+      to {
+        transform: translateX(0);
+        opacity: 1
+      }
+    }
+
+    @keyframes t-out {
+      to {
+        transform: translateX(100px);
+        opacity: 0
+      }
+    }
+
+    /* ======= CONFETTI ======= */
+    .conf {
+      position: fixed;
+      top: -10px;
+      pointer-events: none;
+      animation: c-fall linear forwards;
+      z-index: 9998;
+      border-radius: 3px;
+    }
+
+    @keyframes c-fall {
+      to {
+        transform: translateY(110vh) rotate(720deg);
+        opacity: 0
+      }
+    }
+
+    /* ======= REVEAL ======= */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: .7s ease;
+    }
+
+    .reveal.vis {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ======= RESPONSIVE ======= */
+    @media(max-width:900px) {
+      .hero-inner {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .hero-img-wrap {
+        order: -1;
+      }
+
+      .hero-btns {
+        justify-content: center;
+      }
+
+      .hero-pills {
+        justify-content: center;
+      }
+
+      .hero-stats {
+        justify-content: center;
+      }
+
+      .hero-ring1,
+      .hero-ring2,
+      .float-emoji {
+        display: none;
+      }
+
+      .hero-category-pills {
+        justify-content: center;
+      }
+
+      .pm-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .pm-img-w {
+        border-radius: 28px 28px 0 0;
+        min-height: 190px;
+      }
+    }
+
+    @media(max-width:768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hamburger {
+        display: block;
+      }
+
+      .adm-tabs {
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        padding-bottom: 0;
+      }
+    }
+
+    @media(max-width:480px) {
+      .hero-h1 {
+        font-size: 2.1rem;
+      }
+
+      .prod-grid {
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      }
+    }
+
+    /* ======= ANIMATED FOOTER RACETRACK ======= */
+    .footer-track-wrap {
+      width: 100%;
+      height: 52px;
+      background: #0d0d1a;
+      position: relative;
+      overflow: hidden;
+      z-index: 10;
+      border-top: 2px solid rgba(255, 59, 92, 0.18);
+      border-bottom: 2px solid rgba(255, 59, 92, 0.18);
+      box-shadow: 0 0 25px rgba(255, 59, 92, 0.15);
+    }
+
+    .footer-road {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(180deg, #111126 0%, #0c0c1b 100%);
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .footer-lines {
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: repeating-linear-gradient(90deg, #FFD93D 0px, #FFD93D 30px, transparent 30px, transparent 60px);
+      opacity: 0.65;
+      animation: road-move 1.4s linear infinite;
+    }
+
+    @keyframes road-move {
+      from {
+        background-position: 0 0;
+      }
+
+      to {
+        background-position: -60px 0;
+      }
+    }
+
+    .running-car {
+      position: absolute;
+      left: -100px;
+      font-size: 2.2rem;
+      cursor: pointer;
+      user-select: none;
+      filter: drop-shadow(0 4px 8px rgba(255, 59, 92, 0.45));
+      animation: drive-car 16s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+      display: flex;
+      align-items: center;
+      transition: transform 0.2s;
+    }
+
+    .running-car:hover .car-body {
+      transform: scale(1.25) translateY(-3px);
+    }
+
+    .running-car.boosted {
+      animation: zoom-boost 1.2s cubic-bezier(0.1, 0.8, 0.1, 1) forwards !important;
+    }
+
+    @keyframes zoom-boost {
+      0% {
+        left: 30%;
+        transform: scaleX(-1) scale(1.3) skewX(-15deg);
+      }
+
+      100% {
+        left: 115%;
+        transform: scaleX(-1) scale(1.4) skewX(-20deg);
+      }
+    }
+
+    @keyframes drive-car {
+      0% {
+        left: -100px;
+        transform: scaleX(-1);
+        /* Face right (flipped since default emoji faces left) */
+      }
+
+      15% {
+        left: 20%;
+        transform: scaleX(-1) translateY(0);
+      }
+
+      18% {
+        left: 20%;
+        transform: scaleX(-1) translateY(-6px) rotate(-6deg);
+      }
+
+      21% {
+        left: 20%;
+        transform: scaleX(-1) translateY(0) rotate(0deg);
+      }
+
+      40% {
+        left: 50%;
+        transform: scaleX(-1);
+      }
+
+      42% {
+        left: 50%;
+        transform: scaleX(1);
+        /* Turn left (unflipped, faces left) */
+      }
+
+      55% {
+        left: 32%;
+        transform: scaleX(1);
+      }
+
+      57% {
+        left: 32%;
+        transform: scaleX(1) translateY(-6px) rotate(6deg);
+      }
+
+      60% {
+        left: 32%;
+        transform: scaleX(-1);
+        /* Turn right (flipped, faces right) */
+      }
+
+      80% {
+        left: 80%;
+        transform: scaleX(-1);
+      }
+
+      84% {
+        left: 80%;
+        transform: scaleX(-1) rotate(-5deg) scaleY(1.1);
+      }
+
+      88% {
+        left: 80%;
+        transform: scaleX(-1) rotate(0deg);
+      }
+
+      100% {
+        left: 110%;
+        /* Zoom off right screen */
+        transform: scaleX(-1);
+      }
+    }
+
+    /* Bouncing social media hover effect at bottom */
+    .socials a {
+      transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .socials a:hover {
+      transform: translateY(-8px) rotate(360deg) scale(1.2) !important;
+      box-shadow: 0 8px 20px rgba(255, 59, 92, 0.4);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ======= LOADING ======= -->
+  <div id="loading">
+    <div class="loading-icon">🏎️</div>
+    <div class="loading-brand">KA21TOYS</div>
+    <div class="loading-sub">Hot Wheels • Teddy Bears • Ride-On Cars</div>
+    <div class="loading-bar">
+      <div class="loading-fill"></div>
+    </div>
+  </div>
+
+  <!-- ======= ANIMATED BG ======= -->
+  <div class="bg-orbs">
+    <div class="orb"
+      style="width:500px;height:500px;background:rgba(255,59,92,.07);top:-10%;left:-10%;animation-duration:18s;"></div>
+    <div class="orb"
+      style="width:400px;height:400px;background:rgba(177,79,255,.07);bottom:10%;right:-5%;animation-duration:22s;animation-delay:-8s;">
+    </div>
+    <div class="orb"
+      style="width:300px;height:300px;background:rgba(255,217,61,.05);top:40%;left:30%;animation-duration:14s;animation-delay:-4s;">
+    </div>
+  </div>
+
+  <!-- ======= NAVBAR ======= -->
+  <nav id="navbar">
+    <div class="nav-logo" onclick="goTo('hero')">🚗 KA21TOYS</div>
+    <ul class="nav-links">
+      <li><a href="#" onclick="goTo('hero')">Home</a></li>
+      <li><a href="#" onclick="goTo('shop')">Shop</a></li>
+      <li><a href="#" onclick="goTo('categories')">Categories</a></li>
+      <li><a href="#" onclick="goTo('deals')">Deals 🔥</a></li>
+      <li><a href="#" onclick="goTo('testimonials')">Reviews ⭐</a></li>
+      <li><a href="#" onclick="goTo('nl')">Contact</a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="icon-btn" onclick="goTo('search-bar')" title="Search"><i class="fas fa-search"></i></button>
+      <button class="icon-btn" onclick="openWish()" title="Wishlist"><i class="fas fa-heart"></i><span class="badge"
+          id="wc">0</span></button>
+      <button class="icon-btn" onclick="openCart()" title="Cart"><i class="fas fa-shopping-cart"></i><span class="badge"
+          id="cc">0</span></button>
+      <button class="btn-admin" onclick="openAdminLogin()"><i class="fas fa-lock"></i> Admin</button>
+      <button class="hamburger" id="hbg" onclick="toggleMob()"><i class="fas fa-bars"></i></button>
+    </div>
+  </nav>
+
+  <!-- Mobile Nav -->
+  <div id="mobile-nav">
+    <a href="#" onclick="goTo('hero');toggleMob()">🏠 Home</a>
+    <a href="#" onclick="goTo('shop');toggleMob()">🛒 Shop All</a>
+    <a href="#" onclick="goTo('categories');toggleMob()">🗂️ Categories</a>
+    <a href="#" onclick="goTo('deals');toggleMob()">🔥 Deals</a>
+    <a href="#" onclick="goTo('testimonials');toggleMob()">⭐ Reviews</a>
+    <a href="#" onclick="openAdminLogin();toggleMob()">🔐 Admin Login</a>
+  </div>
+
+  <!-- ======= HERO ======= -->
+  <section id="hero">
+    <div class="hero-particles" id="hstars"></div>
+    <div class="hero-inner">
+      <div class="hero-text">
+        <div class="hero-pills">
+          <span class="hero-pill">🚚 Free Shipping ₹8,000+</span>
+          <span class="hero-pill">🎁 Gift </span>
+          <span class="hero-pill">⭐ 4.9 Rated</span>
+          <!-- *<span class="hero-pill">✅ </span> -->
+        </div>
+        <h1 class="hero-h1">Where Every Ride is an Adventure! 🏎️✨</h1>
+        <p class="hero-sub">India's most exciting toy shop for kids aged 3–12! Hot Wheels collectibles, framed display
+          cars, giant teddy bears & electric ride-on cars that kids actually drive!</p>
+        <div class="hero-category-pills">
+          <div class="hcat-pill hw" onclick="filterCat('Hot Wheels')">🏎️ Hot Wheels</div>
+          <div class="hcat-pill frame" onclick="filterCat('Framed Cars')">🖼️ Framed Cars</div>
+          <div class="hcat-pill teddy" onclick="filterCat('Teddy Bears')">🧸 Teddy Bears</div>
+          <div class="hcat-pill rideon" onclick="filterCat('Ride-On Cars')">🚗 Ride-On Cars</div>
+        </div>
+        <div class="hero-btns">
+          <button class="btn-p" onclick="goTo('shop')"><i class="fas fa-rocket"></i> Shop Now</button>
+          <button class="btn-s" onclick="goTo('deals')"><i class="fas fa-fire"></i> Today's Deals</button>
+        </div>
+        <div class="hero-stats">
+          <div>
+            <div class="h-stat-num" id="stat-n">0+</div>
+            <div class="h-stat-lbl">Products</div>
+          </div>
+          <div>
+            <div class="h-stat-num">4.9⭐</div>
+            <div class="h-stat-lbl">Avg Rating</div>
+          </div>
+          <div>
+            <div class="h-stat-num">100+</div>
+            <div class="h-stat-lbl">Happy Kids</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-img-wrap">
+        <div class="hero-glow"></div>
+        <div class="hero-ring hero-ring1"></div>
+        <div class="hero-ring hero-ring2"></div>
+        <span class="float-emoji" style="animation-duration:9s;">🏎️</span>
+        <span class="float-emoji" style="animation-duration:13s;animation-direction:reverse;">🧸</span>
+        <img src="images/hw_frame.png" alt="Framed Hot Wheels collector car – KA21TOYS" class="hero-main-img"
+          onerror="this.src='https://placehold.co/520x400/12122a/ffffff?text=KA21TOYS'" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= TICKER ======= -->
+  <div id="ticker">
+    <div class="tick-inner" id="tick-inner"></div>
+  </div>
+
+  <!-- ======= CATEGORIES ======= -->
+  <section id="categories">
+    <div class="sc">
+      <div class="sh reveal">
+        <div class="stag">🗂️ Browse</div>
+        <h2 class="stitle">Shop by <span>Category</span></h2>
+        <p class="ssub">4 amazing categories of toys for every kid!</p>
+      </div>
+      <div class="cat-grid" id="cat-grid"></div>
+    </div>
+  </section>
+
+  <!-- ======= AGE FILTER ======= -->
+  <section id="filters">
+    <div class="sc">
+      <div class="sh reveal" style="margin-bottom:1.4rem;">
+        <div class="stag">🎂 Filter by Age</div>
+        <h2 class="stitle">Find Toys for <span>Your Child</span></h2>
+      </div>
+      <div class="filter-row">
+        <button class="flt-btn on" data-age="all" onclick="ageFilter('all',this)">🌈 All Ages</button>
+        <button class="flt-btn" data-age="3-5" onclick="ageFilter('3-5',this)">🐣 Ages 3–5</button>
+        <button class="flt-btn" data-age="6-8" onclick="ageFilter('6-8',this)">🚀 Ages 6–8</button>
+        <button class="flt-btn" data-age="9-12" onclick="ageFilter('9-12',this)">⚡ Ages 9–12</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= SEARCH ======= -->
+  <section id="search-bar">
+    <div class="sc">
+      <div class="srch-wrap">
+        <i class="fas fa-search srch-ico"></i>
+        <input type="text" class="srch-inp" id="srch-inp" placeholder="Search Hot Wheels, Teddy Bears, Ride-On Cars..."
+          oninput="doSearch()" />
+        <button class="sort-btn" onclick="cycleSort()"><i class="fas fa-sort-amount-down" id="sort-ico"></i>
+          Sort</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= SHOP ======= -->
+  <section id="shop">
+    <div class="sc">
+      <div class="sh reveal">
+        <div class="stag">🛒 Our Collection</div>
+        <h2 class="stitle">All <span>Toys</span></h2>
+        <p class="ssub">Hot Wheels • Framed Collector Cars • Teddy Bears • Electric Ride-On Cars</p>
+      </div>
+      <div class="prod-grid" id="prod-grid">
+        <div class="no-prod"><i class="fas fa-spinner fa-spin"></i> Loading amazing toys...</div>
+      </div>
+      <div id="load-more" style="display:none;">
+        <button class="btn-s" style="margin:0 auto;" onclick="loadMore()"><i class="fas fa-chevron-down"></i> Load
+          More</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= FEATURES ======= -->
+  <section id="featured">
+    <div class="sc">
+      <div class="feat-grid">
+        <div class="feat-card reveal">
+          <div class="feat-ico" style="background:rgba(255,59,92,.13);">🚚</div>
+          <div class="feat-t">Free Shipping</div>
+          <div class="feat-d">Free shipping on orders above ₹8,000. Add. charges applicable below ₹8,000.</div>
+        </div>
+        <div class="feat-card reveal">
+          <div class="feat-ico" style="background:rgba(61,214,140,.13);">📦</div>
+          <div class="feat-t">COD Available</div>
+          <div class="feat-d">Cash on Delivery option available for all orders across India!</div>
+        </div>
+        <div class="feat-card reveal">
+          <div class="feat-ico" style="background:rgba(77,143,255,.13);">🔒</div>
+          <div class="feat-t">Secure Payments</div>
+          <div class="feat-d">100% safe checkout. UPI, Cards & COD accepted.</div>
+        </div>
+        <div class="feat-card reveal">
+          <div class="feat-ico" style="background:rgba(255,217,61,.13);">⭐</div>
+          <div class="feat-t">Quality Assured</div>
+          <div class="feat-d"> 100% child-safe materials on every toy.</div>
+        </div>
+        <div class="feat-card reveal">
+          <div class="feat-ico" style="background:rgba(255,99,165,.13);">🎁</div>
+          <div class="feat-t">Gift Wrapping</div>
+          <div class="feat-d">Beautiful gift wrapping available. Perfect for birthdays!</div>
+        </div>
+        <div class="feat-card reveal">
+          <div class="feat-ico" style="background:rgba(177,79,255,.13);">📞</div>
+          <div class="feat-t">24/7 Support</div>
+          <div class="feat-d">Friendly support team always ready to help you!</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= DEALS ======= -->
+  <section id="deals">
+    <div class="sc">
+      <div class="sh reveal">
+        <div class="stag">🔥 Hot Deals</div>
+        <h2 class="stitle">Today's <span>Best Offers</span></h2>
+      </div>
+      <div class="deal-box reveal">
+        <div>
+          <h2>🎉 Mega Sale is Live!</h2>
+          <p>Up to 60% OFF on Hot Wheels, Teddy Bears & Ride-On Cars!</p>
+          <div class="countdown">
+            <div class="cbox"><span class="cnum" id="ch">00</span><span class="clbl">Hours</span></div>
+            <div class="cbox"><span class="cnum" id="cm">00</span><span class="clbl">Mins</span></div>
+            <div class="cbox"><span class="cnum" id="cs">00</span><span class="clbl">Secs</span></div>
+          </div>
+        </div>
+        <button class="btn-p" style="font-size:1.05rem;padding:1rem 2.2rem;" onclick="goTo('shop')"><i
+            class="fas fa-fire"></i> Grab Deals Now</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= TESTIMONIALS ======= -->
+  <section id="testimonials">
+    <div class="sc">
+      <div class="sh reveal">
+        <div class="stag">💬 Reviews</div>
+        <h2 class="stitle">Happy <span>Little Customers</span></h2>
+      </div>
+      <div class="test-grid" id="test-grid"></div>
+    </div>
+  </section>
+
+  <!-- ======= NEWSLETTER ======= -->
+  <section id="nl">
+    <div class="sc">
+      <div class="nl-box reveal">
+        <div style="font-size:3rem;margin-bottom:.5rem;">📬</div>
+        <h2>Stay in the Fast Lane!</h2>
+        <p>Subscribe for exclusive deals, new arrivals & exciting toy news. No spam, just fun!</p>
+        <div class="nl-form">
+          <input type="email" class="nl-inp" id="nl-email" placeholder="Enter your email..." />
+          <button class="btn-sub" onclick="subscribe()">Subscribe 🚀</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= ANIMATED FOOTER RACETRACK ======= -->
+  <div class="footer-track-wrap">
+    <div class="footer-road">
+      <div class="footer-lines"></div>
+      <div class="running-car" onclick="activateNitro(this)" title="Tap for NITRO BOOST! ⚡">
+        <span class="car-body" style="display: inline-block; transition: transform 0.2s;">🏎️💨</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======= FOOTER ======= -->
+  <footer>
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <div class="foot-logo">🚗 KA21TOYS</div>
+        <p>India's most exciting toy shop — Hot Wheels collectibles, framed cars, giant teddies & electric ride-on cars
+          for kids aged 3–12.</p>
+        <div class="socials">
+          <a class="soc" href="#"><i class="fab fa-facebook-f"></i></a>
+          <a class="soc" href="#"><i class="fab fa-instagram"></i></a>
+          <a class="soc" href="#"><i class="fab fa-youtube"></i></a>
+          <a class="soc" href="#"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+      <div class="fcol">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#" onclick="goTo('hero')">Home</a></li>
+          <li><a href="#" onclick="goTo('shop')">Shop All</a></li>
+          <li><a href="#" onclick="goTo('deals')">Today's Deals</a></li>
+          <li><a href="#" onclick="goTo('categories')">Categories</a></li>
+        </ul>
+      </div>
+      <div class="fcol">
+        <h4>Categories</h4>
+        <ul>
+          <li><a href="#" onclick="filterCat('Hot Wheels')">🏎️ Hot Wheels</a></li>
+          <li><a href="#" onclick="filterCat('Framed Cars')">🖼️ Framed Collector Cars</a></li>
+          <li><a href="#" onclick="filterCat('Teddy Bears')">🧸 Teddy Bears</a></li>
+          <li><a href="#" onclick="filterCat('Ride-On Cars')">🚗 Electric Ride-On Cars</a></li>
+        </ul>
+      </div>
+      <div class="fcol">
+        <h4>Help</h4>
+        <ul>
+          <li><a href="#">Track Order</a></li>
+          <li><a href="#">Shipping Info</a></li>
+          <li><a href="#">FAQ</a></li>
+          <li><a href="#">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="fcol">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:dellputtur@gmail.com">📧 dellputtur@gmail.com</a></li>
+          <li><a href="tel:+917899309905">📞 +91 7899309905</a></li>
+          <li><a href="#">📍 Puttur, Karnataka</a></li>
+          <li><a href="#">⏰ Mon–Sat 9AM–6PM</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">© 2025 KA21TOYS. All rights reserved. Made with ❤️ for little champions |
+      Child-Safe Products</div>
+  </footer>
+
+  <!-- ======= CART ======= -->
+  <div id="cart-ov" onclick="closeCart()"></div>
+  <aside id="cart-sb">
+    <div class="sb-head">
+      <h3>🛒 My Cart</h3><button class="sb-close" onclick="closeCart()"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="sb-items" id="cart-items"></div>
+    <div class="sb-foot" id="cart-foot">
+      <div class="tot-row"><span>Subtotal</span><strong id="cart-sub">₹0</strong></div>
+      <div class="tot-row"><span>Delivery</span><strong id="cart-del" style="text-align:right;">₹0</strong></div>
+      <div class="tot-row" style="border-top:1px solid rgba(255,255,255,.09);padding-top:.45rem;margin-top:.45rem;">
+        <span style="color:#fff;font-weight:900;">Total</span>
+        <strong id="cart-tot" style="color:var(--red);font-size:1.38rem;">₹0</strong>
+      </div>
+      <div id="cart-note"
+        style="font-size:0.72rem;color:var(--yellow);text-align:right;margin-top:0.3rem;display:none;font-weight:800;">
+        *Additional shipping charges will be calculated on dispatch.</div>
+      <button class="btn-chk" onclick="checkout()"><i class="fas fa-check-circle"></i> Place Order</button>
+    </div>
+  </aside>
+
+  <!-- ======= WISHLIST ======= -->
+  <div id="wish-ov" onclick="closeWish()"></div>
+  <aside id="wish-sb">
+    <div class="sb-head">
+      <h3>❤️ Wishlist</h3><button class="sb-close" onclick="closeWish()"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="sb-items" id="wish-items"></div>
+  </aside>
+
+  <!-- ======= PRODUCT MODAL ======= -->
+  <div id="pm-ov" onclick="closePM(event)">
+    <div id="pm">
+      <div class="pm-inner">
+        <div class="pm-img-w"><img id="pm-img" src="" alt="" class="pm-img" /></div>
+        <div class="pm-cnt">
+          <button class="pm-close" onclick="closePM(null,true)"><i class="fas fa-times"></i></button>
+          <span class="pm-tag" id="pm-tag"></span>
+          <h2 class="pm-name" id="pm-name"></h2>
+          <div id="pm-stars" style="color:var(--yellow);margin-bottom:.5rem;"></div>
+          <p class="pm-desc" id="pm-desc"></p>
+          <div class="pm-pr-row">
+            <span class="pm-price" id="pm-price"></span>
+            <span class="pm-orig" id="pm-orig"></span>
+            <span class="pm-disc" id="pm-disc"></span>
+          </div>
+          <div class="pm-specs" id="pm-specs"></div>
+          <div class="pm-acts">
+            <button class="btn-pm-cart" id="pm-cart"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+            <button class="btn-pm-wish" id="pm-wish"><i class="fas fa-heart"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======= ADMIN LOGIN ======= -->
+  <div id="al-ov" onclick="closeAdminLogin(event)">
+    <div id="al" style="position:relative;">
+      <button class="mct" onclick="closeAdminLogin(null,true)"><i class="fas fa-times"></i></button>
+      <div class="al-hd">
+        <div class="al-ico">🔐</div>
+        <h3>Admin Login</h3>
+        <p>Access the KA21TOYS control panel</p>
+      </div>
+      <div class="al-bd">
+        <div class="fg"><label>Username</label><input type="text" class="fi" id="au" placeholder="Enter username" />
+        </div>
+        <div class="fg"><label>Password</label><input type="password" class="fi" id="ap" placeholder="Enter password"
+            onkeydown="if(event.key==='Enter')doLogin()" /></div>
+        <div class="al-err" id="al-err">❌ Invalid credentials. Please try again.</div>
+        <button class="btn-login" onclick="doLogin()"><i class="fas fa-sign-in-alt"></i> Login</button>
+        <p class="al-hint">Demo: admin / ka21admin123</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======= EDIT MODAL ======= -->
+  <div id="em-ov" onclick="closeEM(event)">
+    <div id="em">
+      <h3>✏️ Edit Product</h3>
+      <div class="fg2">
+        <div><label class="afl">Name *</label><input type="text" class="afi" id="en" /></div>
+        <div><label class="afl">Price (₹) *</label><input type="number" class="afi" id="ep"
+            oninput="calcEditDiscount()" /></div>
+        <div><label class="afl">Original Price (₹)</label><input type="number" class="afi" id="eo"
+            oninput="calcEditDiscount()" /></div>
+        <div><label class="afl">Discount %</label><input type="number" class="afi" id="ed" readonly
+            style="background: rgba(255,255,255,0.03); cursor: not-allowed; opacity: 0.8;" /></div>
+        <div><label class="afl">Age Range</label>
+          <select class="afs" id="ea">
+            <option value="3-5">3–5 Years</option>
+            <option value="6-8">6–8 Years</option>
+            <option value="9-12">9–12 Years</option>
+            <option value="all">All Ages</option>
+          </select>
+        </div>
+        <div><label class="afl">Category</label>
+          <select class="afs" id="ec">
+            <option value="Hot Wheels">🏎️ Hot Wheels</option>
+            <option value="Framed Cars">🖼️ Framed Cars</option>
+            <option value="Teddy Bears">🧸 Teddy Bears</option>
+            <option value="Ride-On Cars">🚗 Ride-On Cars</option>
+          </select>
+        </div>
+        <div class="fg2-full"><label class="afl">Description</label><textarea class="afta" id="edesc"></textarea></div>
+        <div class="fg2-full">
+          <label class="afl">Image File, URL or Upload</label>
+          <div style="display:flex;gap:.5rem;align-items:center;">
+            <input type="text" class="afi" id="eimg" placeholder="e.g. hw1.png or URL" oninput="prevEditImg()"
+              style="flex:1;" />
+            <label class="btn-draft"
+              style="padding:.55rem 1rem;font-size:.8rem;margin-top:0;cursor:pointer;white-space:nowrap;display:flex;align-items:center;gap:.3rem;">
+              <i class="fas fa-upload"></i> Device
+              <input type="file" id="eimg-file" accept="image/*" onchange="handleFileUpload(event, 'eimg', 'eimg-prev')"
+                style="display:none;" />
+            </label>
+          </div>
+          <img id="eimg-prev" src="" alt="preview" class="img-prev" />
+        </div>
+        <div><label class="afl">Stock</label><input type="number" class="afi" id="estk" /></div>
+        <div><label class="afl">Material</label><input type="text" class="afi" id="emat" /></div>
+      </div>
+      <div style="display:flex;gap:.9rem;flex-wrap:wrap;margin-top:1.3rem;">
+        <button class="btn-pub" onclick="saveEdit()"><i class="fas fa-save"></i> Save</button>
+        <button class="btn-draft" onclick="closeEM(null,true)"><i class="fas fa-times"></i> Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======= ADMIN DASHBOARD ======= -->
+  <div id="adm">
+    <div class="adm-hd">
+      <div style="display:flex;align-items:center;gap:.9rem;">
+        <div class="adm-logo">🚗 KA21TOYS</div>
+        <span class="adm-tag">Admin Panel</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap;">
+        <span style="color:rgba(255,255,255,.45);font-size:.83rem;font-weight:800;">Welcome, <span
+            style="color:#fff;">Admin</span></span>
+        <button class="btn-logout" onclick="doLogout()"><i class="fas fa-sign-out-alt"></i> Logout</button>
+      </div>
+    </div>
+    <div class="adm-tabs">
+      <button class="adm-tab on" onclick="switchTab('dash',this)"><i class="fas fa-chart-bar"></i> Dashboard</button>
+      <button class="adm-tab" onclick="switchTab('add',this)"><i class="fas fa-plus-circle"></i> Add Product</button>
+      <button class="adm-tab" onclick="switchTab('prods',this)"><i class="fas fa-boxes"></i> All Products</button>
+      <button class="adm-tab" onclick="switchTab('orders',this)"><i class="fas fa-receipt"></i> Orders</button>
+      <button class="adm-tab" onclick="switchTab('subs',this)"><i class="fas fa-envelope"></i> Subscribers</button>
+    </div>
+
+    <!-- DASHBOARD -->
+    <div class="adm-panel on" id="panel-dash" style="padding:2rem;">
+      <div class="sg" id="adm-sg"></div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.4rem;">
+        <div class="afc">
+          <h3><i class="fas fa-chart-line" style="color:var(--green)"></i> Quick Stats</h3>
+          <div id="qs" style="color:rgba(255,255,255,.55);font-size:.88rem;font-weight:700;line-height:2.1;"></div>
+        </div>
+        <div class="afc">
+          <h3><i class="fas fa-star" style="color:var(--yellow)"></i> Recent Activity</h3>
+          <div id="ra" style="color:rgba(255,255,255,.55);font-size:.86rem;font-weight:700;line-height:2.1;"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ADD PRODUCT -->
+    <div class="adm-panel" id="panel-add" style="padding:2rem;">
+      <div class="afc">
+        <h3><i class="fas fa-plus-circle" style="color:var(--green)"></i> Add New Product</h3>
+        <div class="fg2">
+          <div><label class="afl">Product Name *</label><input type="text" class="afi" id="an"
+              placeholder="e.g. Hot Wheels Porsche 911" /></div>
+          <div><label class="afl">Price (₹) *</label><input type="number" class="afi" id="apr" placeholder="299"
+              oninput="calcAddDiscount()" /></div>
+          <div><label class="afl">Original / MRP (₹)</label><input type="number" class="afi" id="aor" placeholder="499"
+              oninput="calcAddDiscount()" /></div>
+          <div><label class="afl">Discount %</label><input type="number" class="afi" id="adc" placeholder="0" readonly
+              style="background: rgba(255,255,255,0.03); cursor: not-allowed; opacity: 0.8;" /></div>
+          <div>
+            <label class="afl">Category *</label>
+            <select class="afs" id="acat">
+              <option value="Hot Wheels">🏎️ Hot Wheels</option>
+              <option value="Framed Cars">🖼️ Framed Collector Cars</option>
+              <option value="Teddy Bears">🧸 Teddy Bears</option>
+              <option value="Ride-On Cars">🚗 Electric Ride-On Cars</option>
+            </select>
+          </div>
+          <div>
+            <label class="afl">Age Range *</label>
+            <select class="afs" id="aage">
+              <option value="3-5">3–5 Years (Toddler)</option>
+              <option value="6-8">6–8 Years (Junior)</option>
+              <option value="9-12">9–12 Years (Pro)</option>
+              <option value="all">All Ages</option>
+            </select>
+          </div>
+          <div><label class="afl">Stock Qty</label><input type="number" class="afi" id="astk" placeholder="20"
+              value="10" /></div>
+          <div><label class="afl">Material</label><input type="text" class="afi" id="amat"
+              placeholder="Die-cast Metal / Soft Plush / ABS Plastic" /></div>
+          <div><label class="afl">Dimensions</label><input type="text" class="afi" id="adim"
+              placeholder="20cm x 8cm x 6cm" /></div>
+          <div><label class="afl">Brand</label><input type="text" class="afi" id="abrd"
+              placeholder="Hot Wheels / KA21TOYS" value="KA21TOYS" /></div>
+          <div>
+            <label class="afl">Badge</label>
+            <select class="afs" id="abdg">
+              <option value="">None</option>
+              <option value="new">✨ New Arrival</option>
+              <option value="hot">🔥 Hot Deal</option>
+              <option value="sale">💰 Sale</option>
+              <option value="bestseller">⭐ Bestseller</option>
+              <option value="collector">🏆 Collector</option>
+            </select>
+          </div>
+          <div><label class="afl">Rating (1–5)</label><input type="number" class="afi" id="arat" placeholder="4.5"
+              min="1" max="5" step="0.1" value="4.5" /></div>
+          <div class="fg2-full"><label class="afl">Description *</label><textarea class="afta" id="adesc"
+              placeholder="Describe this amazing toy..."></textarea></div>
+          <div>
+            <label class="afl">Image File, URL or Upload</label>
+            <div style="display:flex;gap:.5rem;align-items:center;">
+              <input type="text" class="afi" id="aimg" placeholder="hw1.png or https://..." oninput="prevImg()"
+                style="flex:1;" />
+              <label class="btn-draft"
+                style="padding:.55rem 1rem;font-size:.8rem;margin-top:0;cursor:pointer;white-space:nowrap;display:flex;align-items:center;gap:.3rem;">
+                <i class="fas fa-upload"></i> Device
+                <input type="file" id="aimg-file" accept="image/*"
+                  onchange="handleFileUpload(event, 'aimg', 'aimg-prev')" style="display:none;" />
+              </label>
+            </div>
+            <img id="aimg-prev" src="" alt="preview" class="img-prev" />
+          </div>
+          <div><label class="afl">Tags (comma separated)</label><input type="text" class="afi" id="atags"
+              placeholder="fast, red, collector, diecast" /></div>
+        </div>
+        <div style="display:flex;gap:.9rem;flex-wrap:wrap;align-items:center;margin-top:1rem;">
+          <button class="btn-pub" onclick="pubProd()"><i class="fas fa-globe"></i> Publish Now</button>
+          <button class="btn-draft" onclick="draftProd()"><i class="fas fa-save"></i> Save Draft</button>
+          <button
+            style="background:none;border:none;color:rgba(255,255,255,.35);cursor:pointer;font-size:.83rem;font-weight:900;"
+            onclick="resetForm()"><i class="fas fa-undo"></i> Reset</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ALL PRODUCTS -->
+    <div class="adm-panel" id="panel-prods" style="padding:2rem;">
+      <div class="afc" style="overflow-x:auto;">
+        <div class="adm-ph">
+          <h3
+            style="font-family:'Fredoka One',cursive;color:#fff;font-size:1.35rem;display:flex;align-items:center;gap:.55rem;">
+            <i class="fas fa-boxes" style="color:var(--blue)"></i> Product Inventory
+          </h3>
+          <input type="text" class="adm-srch" id="adm-srch" placeholder="🔍 Search..." oninput="renderAdmProds()" />
+        </div>
+        <table class="atbl">
+          <thead>
+            <tr>
+              <th>Image</th>
+              <th>Name</th>
+              <th>Price</th>
+              <th>Category</th>
+              <th>Age</th>
+              <th>Stock</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="adm-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ORDERS -->
+    <div class="adm-panel" id="panel-orders" style="padding:2rem;">
+      <div class="afc">
+        <h3><i class="fas fa-receipt" style="color:var(--yellow)"></i> Orders</h3>
+        <div id="adm-orders"></div>
+      </div>
+    </div>
+
+    <!-- SUBSCRIBERS -->
+    <div class="adm-panel" id="panel-subs" style="padding:2rem;">
+      <div class="afc">
+        <h3><i class="fas fa-envelope" style="color:var(--purple)"></i> Email Subscribers</h3>
+        <div id="adm-subs"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======= TOAST ======= -->
+  <div id="toast-c"></div>
+
+  <!-- ======= JAVASCRIPT ======= -->
+  <script>
+    // ——— CREDENTIALS ———
+    const CREDS = { u: 'admin', p: 'ka21admin123' };
+
+    // ——— CATEGORIES CONFIG ———
+    const CATS = [
+      { name: 'Hot Wheels', icon: '🏎️', color: '#FFD93D', grad: 'linear-gradient(135deg,#FFD93D,#FF6B2B)', ac: 'rgba(255,217,61,.6)' },
+      { name: 'Framed Cars', icon: '🖼️', color: '#B14FFF', grad: 'linear-gradient(135deg,#B14FFF,#7b2fff)', ac: 'rgba(177,79,255,.6)' },
+      { name: 'Teddy Bears', icon: '🧸', color: '#FF63A5', grad: 'linear-gradient(135deg,#FF63A5,#FF3B5C)', ac: 'rgba(255,99,165,.6)' },
+      { name: 'Ride-On Cars', icon: '🚗', color: '#3DD68C', grad: 'linear-gradient(135deg,#3DD68C,#2ecc71)', ac: 'rgba(61,214,140,.6)' }
+    ];
+
+    // ——— DEFAULT PRODUCTS ———
+    const DEFAULTS = [
+      // HOT WHEELS
+      {
+        id: 'hw001', name: 'Hot Wheels Turbo Racer Pack', price: 299, original: 499, discount: 40,
+        age: '6-8', category: 'Hot Wheels', img: 'images/hw1.png', badge: 'hot', rating: 4.9, reviews: 312,
+        stock: 50, material: 'Die-cast Metal', dimensions: '7cm x 3cm x 2cm', brand: 'Hot Wheels',
+        desc: 'Set of 5 iconic Hot Wheels die-cast miniature cars! Includes Ferrari, Lamborghini, Bugatti, Porsche & Mustang – all with ultra-smooth wheels for lightning-fast runs!',
+        tags: ['diecast', 'mini', 'race', 'collect'], status: 'published', createdAt: Date.now() - 86400000 * 3
+      },
+      {
+        id: 'hw002', name: 'Hot Wheels Collector Series – Red Edition', price: 199, original: 299, discount: 33,
+        age: '9-12', category: 'Hot Wheels', img: 'images/hw2.png', badge: 'collector', rating: 4.8, reviews: 187,
+        stock: 30, material: 'Premium Die-cast Metal', dimensions: '7cm x 3cm x 2cm', brand: 'Hot Wheels',
+        desc: 'A true collector\'s gem! This premium red die-cast Hot Wheels car features ultra-detailed bodywork, rubber tyres & a metallic chrome finish. Limited edition – grab yours!',
+        tags: ['collector', 'red', 'limited', 'diecast'], status: 'published', createdAt: Date.now() - 86400000 * 7
+      },
+      {
+        id: 'hw003', name: 'Hot Wheels 5-Car Gift Set', price: 449, original: 699, discount: 36,
+        age: '6-8', category: 'Hot Wheels', img: 'images/hw1.png', badge: 'bestseller', rating: 4.9, reviews: 524,
+        stock: 40, material: 'Die-cast Metal', dimensions: 'Various', brand: 'Hot Wheels',
+        desc: 'The ultimate gift for any car-loving kid! 5 hand-picked Hot Wheels cars in a premium gift box. Different colours & styles – perfect for birthdays and special occasions!',
+        tags: ['gift', 'set', '5pack', 'birthday'], status: 'published', createdAt: Date.now() - 86400000 * 14
+      },
+
+      // FRAMED CARS
+      {
+        id: 'fr001', name: 'Framed Hot Wheels – Shadow Box Display', price: 899, original: 1299, discount: 31,
+        age: '9-12', category: 'Framed Cars', img: 'images/hw_frame.png', badge: 'collector', rating: 5.0, reviews: 98,
+        stock: 15, material: 'Wooden Frame + Die-cast Car', dimensions: '25cm x 20cm x 5cm', brand: 'KA21TOYS',
+        desc: 'Turn your favourite Hot Wheels car into stunning wall art! Premium black shadow box frame with a real die-cast car mounted inside. A perfect collector\'s display & unique gift!',
+        tags: ['frame', 'collector', 'display', 'wall', 'gift'], status: 'published', createdAt: Date.now() - 86400000 * 2
+      },
+      {
+        id: 'fr002', name: 'Framed Collector Car – Gold Edition', price: 1199, original: 1799, discount: 33,
+        age: '9-12', category: 'Framed Cars', img: 'images/hw_frame.png', badge: 'new', rating: 4.9, reviews: 42,
+        stock: 8, material: 'Gold Frame + Die-cast Car', dimensions: '30cm x 25cm x 5cm', brand: 'KA21TOYS',
+        desc: 'An absolute showstopper! Gold-finish frame housing a premium die-cast collector car. Includes serial number certificate. The perfect trophy for any car enthusiast or collector!',
+        tags: ['gold', 'premium', 'collector', 'frame', 'certificate'], status: 'published', createdAt: Date.now() - 86400000 * 1
+      },
+      {
+        id: 'fr003', name: 'Framed Twin Car Display', price: 1499, original: 2199, discount: 32,
+        age: 'all', category: 'Framed Cars', img: 'images/hw_frame.png', badge: 'hot', rating: 4.8, reviews: 67,
+        stock: 10, material: 'Solid Wood Frame + 2 Die-cast Cars', dimensions: '40cm x 22cm x 6cm', brand: 'KA21TOYS',
+        desc: 'Double the wow factor! This gorgeous wide display frame holds TWO die-cast cars side by side. Velvet-lined interior, hanging hardware included. A collector\'s dream gift!',
+        tags: ['twin', 'double', 'frame', 'collector', 'gift'], status: 'published', createdAt: Date.now() - 86400000 * 5
+      },
+
+      // TEDDY BEARS
+      {
+        id: 'td001', name: 'Super Fluffy Giant Teddy Bear', price: 799, original: 1199, discount: 33,
+        age: '3-5', category: 'Teddy Bears', img: 'images/teddy1.png', badge: 'bestseller', rating: 4.9, reviews: 643,
+        stock: 35, material: 'Ultra-soft Plush', dimensions: '90cm tall', brand: 'KA21TOYS',
+        desc: 'The biggest, fluffiest, most huggable teddy bear ever! Standing 90cm tall, this super-soft giant teddy is the ultimate cuddle companion for little ones. Machine-washable & allergen-free!',
+        tags: ['giant', 'fluffy', 'soft', 'cuddle', 'toddler'], status: 'published', createdAt: Date.now() - 86400000 * 8
+      },
+      {
+        id: 'td002', name: 'Premium Brown Classic Teddy', price: 499, original: 799, discount: 38,
+        age: '3-5', category: 'Teddy Bears', img: 'images/teddy2.png', badge: 'hot', rating: 4.8, reviews: 432,
+        stock: 45, material: 'Premium Plush + Cotton Fill', dimensions: '60cm tall', brand: 'KA21TOYS',
+        desc: 'A timeless classic! This premium brown teddy bear has the softest plush you\'ve ever touched. With embroidered eyes, a sweet smile & a big bow, it\'s the perfect first teddy!',
+        tags: ['classic', 'brown', 'soft', 'cuddle', 'baby'], status: 'published', createdAt: Date.now() - 86400000 * 12
+      },
+      {
+        id: 'td003', name: 'Jumbo Rainbow Teddy Gift Set', price: 999, original: 1499, discount: 33,
+        age: '3-5', category: 'Teddy Bears', img: 'images/teddy1.png', badge: 'new', rating: 4.9, reviews: 156,
+        stock: 20, material: 'Rainbow Plush Fabric', dimensions: '75cm tall', brand: 'KA21TOYS',
+        desc: 'Vibrant rainbow colours meet ultra-softness in this stunning jumbo teddy bear! Comes in a premium gift box with a personalised message card. The ultimate birthday surprise!',
+        tags: ['rainbow', 'jumbo', 'gift', 'birthday', 'colorful'], status: 'published', createdAt: Date.now() - 86400000 * 4
+      },
+
+      // RIDE-ON CARS
+      {
+        id: 'ro001', name: 'Lightning Bolt Electric Ride-On Car', price: 8999, original: 12999, discount: 31,
+        age: '3-5', category: 'Ride-On Cars', img: 'images/rideon1.png', badge: 'bestseller', rating: 4.9, reviews: 287,
+        stock: 12, material: 'ABS Plastic + Metal Frame', dimensions: '105cm x 60cm x 45cm', brand: 'KA21TOYS',
+        desc: 'Let your little one drive their very own electric car! Powered by a rechargeable 6V battery, this stunning ride-on does 3km/h with real working headlights, horn & music. For ages 3–5, max 25kg!',
+        tags: ['electric', 'rideon', 'battery', 'headlights', 'toddler'], status: 'published', createdAt: Date.now() - 86400000 * 6
+      },
+      {
+        id: 'ro002', name: 'Junior Supercar Blue Electric Ride-On', price: 11999, original: 16999, discount: 29,
+        age: '6-8', category: 'Ride-On Cars', img: 'images/rideon2.png', badge: 'hot', rating: 4.8, reviews: 194,
+        stock: 8, material: 'Premium ABS + Metal Chassis', dimensions: '115cm x 65cm x 50cm', brand: 'KA21TOYS',
+        desc: 'The most realistic kids\' car ever! 12V dual motor, 5km/h speed, leather seat, real MP3 player, parental remote control & rubber tyres. For ages 6–8, supports up to 40kg. A dream come true!',
+        tags: ['electric', '12v', 'remote', 'MP3', 'leather'], status: 'published', createdAt: Date.now() - 86400000 * 9
+      },
+      {
+        id: 'ro003', name: 'Pro Racer 24V Turbo Ride-On', price: 18999, original: 25999, discount: 27,
+        age: '9-12', category: 'Ride-On Cars', img: 'images/rideon1.png', badge: 'new', rating: 4.9, reviews: 88,
+        stock: 5, material: 'Premium Steel + ABS', dimensions: '130cm x 70cm x 55cm', brand: 'KA21TOYS',
+        desc: 'The ultimate ride-on for big kids! 24V dual motor pushes 8km/h, with genuine rubber tyres, working seatbelt, LED dashboard, Bluetooth music & two-seater design. For ages 9–12, supports up to 60kg!',
+        tags: ['24v', 'turbo', 'fast', 'bluetooth', 'seatbelt'], status: 'published', createdAt: Date.now() - 86400000 * 11
+      }
+    ];
+
+    // ——— STATE ———
+    let prods = JSON.parse(localStorage.getItem('ka21_prods') || 'null') || [...DEFAULTS];
+
+    // Wire all image paths correctly (future-proofing & self-healing migration for localStorage)
+    prods.forEach(p => {
+      if (p.img && !p.img.startsWith('data:') && !p.img.startsWith('http://') && !p.img.startsWith('https://') && !p.img.startsWith('images/')) {
+        p.img = 'images/' + p.img;
+      }
+    });
+    // Save corrected paths to localStorage if it was loaded from localStorage
+    if (localStorage.getItem('ka21_prods')) {
+      localStorage.setItem('ka21_prods', JSON.stringify(prods));
+    }
+
+    let cart = JSON.parse(localStorage.getItem('ka21_cart') || '[]');
+    let wish = JSON.parse(localStorage.getItem('ka21_wish') || '[]');
+    let orders = JSON.parse(localStorage.getItem('ka21_orders') || '[]');
+    let subs = JSON.parse(localStorage.getItem('ka21_subs') || '[]');
+    let filter = { age: 'all', cat: 'all', q: '', sort: 'default' };
+    let shown = 12;
+    let editId = null;
+
+    const save = {
+      prods: () => localStorage.setItem('ka21_prods', JSON.stringify(prods)),
+      cart: () => localStorage.setItem('ka21_cart', JSON.stringify(cart)),
+      wish: () => localStorage.setItem('ka21_wish', JSON.stringify(wish)),
+      orders: () => localStorage.setItem('ka21_orders', JSON.stringify(orders)),
+      subs: () => localStorage.setItem('ka21_subs', JSON.stringify(subs))
+    };
+
+    // ——— INIT ———
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.getElementById('loading').classList.add('gone');
+        initStars(); initTicker(); renderCats();
+        renderProds(); renderTests(); initCountdown();
+        initReveal(); animateStat();
+        updateCC(); updateWC();
+      }, 1700);
+    });
+
+    // ——— STARS ———
+    function initStars() {
+      const w = document.getElementById('hstars');
+      for (let i = 0; i < 70; i++) {
+        const s = document.createElement('div'); s.className = 'star-dot';
+        const sz = Math.random() * 3 + 1;
+        s.style.cssText = `width:${sz}px;height:${sz}px;left:${Math.random() * 100}%;top:${Math.random() * 100}%;animation-duration:${Math.random() * 4 + 2}s;animation-delay:${Math.random() * 4}s;`;
+        w.appendChild(s);
+      }
+    }
+
+    // ——— TICKER ———
+    function initTicker() {
+      const items = [
+        '🏎️ Hot Wheels Die-Cast Cars', '🖼️ Collector Framed Cars', '🧸 Giant Teddy Bears',
+        '🚗 Electric Ride-On Cars', '🚚 Free Shipping ₹8,000+', '🔥 Up to 60% OFF',
+        '⭐ 100+ Happy Kids', '🎁 Gift Wrapping Available', '✅ Child-Safe',
+        '📦 COD Available', '🛡️ Secure Payments', '🏎️ Hot Wheels Die-Cast Cars',
+        '🖼️ Collector Framed Cars', '🧸 Giant Teddy Bears', '🚗 Electric Ride-On Cars',
+        '🚚 Free Shipping ₹8,000+', '🔥 Up to 60% OFF', '⭐ 100+ Happy Kids'
+      ];
+      document.getElementById('tick-inner').innerHTML = items.map(i => `<span class="tick-item">✦ ${i}</span>`).join('');
+    }
+
+    // ——— STAT ANIMATE ———
+    function animateStat() {
+      const el = document.getElementById('stat-n');
+      const t = prods.filter(p => p.status === 'published').length;
+      let c = 0;
+      const iv = setInterval(() => {
+        c = Math.min(c + Math.ceil(t / 25), t);
+        el.textContent = c + '+';
+        if (c >= t) clearInterval(iv);
+      }, 60);
+    }
+
+    // ——— CATEGORIES ———
+    function renderCats() {
+      const g = document.getElementById('cat-grid');
+      const counts = {};
+      prods.filter(p => p.status === 'published').forEach(p => counts[p.category] = (counts[p.category] || 0) + 1);
+      g.innerHTML = `
+    <div class="cat-card ${filter.cat === 'all' ? 'active' : ''}" onclick="filterCat('all',this)" style="--g:linear-gradient(135deg,#FF3B5C,#B14FFF);${filter.cat === 'all' ? 'border-color:rgba(255,59,92,.6);' : ''}">
+      <span class="cat-ico">🌈</span>
+      <div class="cat-nm">All Toys</div>
+      <div class="cat-ct">${prods.filter(p => p.status === 'published').length} products</div>
+    </div>
+  `+ CATS.map(c => `
+    <div class="cat-card ${filter.cat === c.name ? 'active' : ''}" onclick="filterCat('${c.name}',this)" style="--g:${c.grad};${filter.cat === c.name ? 'border-color:' + c.ac + ';' : ''}">
+      <span class="cat-ico">${c.icon}</span>
+      <div class="cat-nm">${c.name}</div>
+      <div class="cat-ct">${counts[c.name] || 0} products</div>
+    </div>
+  `).join('');
+    }
+
+    function filterCat(cat, el) {
+      filter.cat = cat; shown = 12;
+      document.querySelectorAll('.cat-card').forEach(c => { c.classList.remove('active'); c.style.borderColor = ''; });
+      if (el) { el.classList.add('active'); const cfg = CATS.find(c => c.name === cat); if (cfg) el.style.borderColor = cfg.ac; }
+      renderProds(); renderCats(); goTo('shop');
+    }
+
+    // ——— PRODUCTS ———
+    function getFiltered() {
+      let f = prods.filter(p => p.status === 'published');
+      if (filter.age !== 'all') f = f.filter(p => p.age === filter.age || p.age === 'all');
+      if (filter.cat !== 'all') f = f.filter(p => p.category === filter.cat);
+      if (filter.q.trim()) {
+        const q = filter.q.toLowerCase();
+        f = f.filter(p => p.name.toLowerCase().includes(q) || p.desc.toLowerCase().includes(q) || p.category.toLowerCase().includes(q) || (p.tags || []).some(t => t.includes(q)));
+      }
+      switch (filter.sort) {
+        case 'asc': f.sort((a, b) => a.price - b.price); break;
+        case 'desc': f.sort((a, b) => b.price - a.price); break;
+        case 'rating': f.sort((a, b) => b.rating - a.rating); break;
+        case 'new': f.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0)); break;
+        case 'disc': f.sort((a, b) => (b.discount || 0) - (a.discount || 0)); break;
+      }
+      return f;
+    }
+
+    function badgeLabel(b) { return { new: '✨ New', hot: '🔥 Hot', sale: '💰 Sale', bestseller: '⭐ Best', collector: '🏆 Collector' }[b] || b; }
+    function badgeColor(b) { return { new: 'linear-gradient(135deg,#3DD68C,#2ecc71)', hot: 'linear-gradient(135deg,#FF6B2B,#FF3B5C)', sale: 'linear-gradient(135deg,#FFD93D,#FF6B2B)', bestseller: 'linear-gradient(135deg,#B14FFF,#7b2fff)', collector: 'linear-gradient(135deg,#FFD93D,#B14FFF)' }[b] || 'linear-gradient(135deg,#FF3B5C,#FF6B2B)'; }
+    function stars(r) { const f = Math.round(r || 4.5); return '★'.repeat(f) + '☆'.repeat(5 - f); }
+
+    function renderProds() {
+      const g = document.getElementById('prod-grid');
+      const f = getFiltered();
+      const s = f.slice(0, shown);
+      if (!f.length) {
+        g.innerHTML = `<div class="no-prod"><i class="fas fa-box-open"></i><p>No toys found. Try a different filter!</p></div>`;
+        document.getElementById('load-more').style.display = 'none';
+        return;
+      }
+      g.innerHTML = s.map(p => {
+        const inC = cart.find(c => c.id === p.id);
+        const inW = wish.includes(p.id);
+        return `
+    <div class="pcard" data-id="${p.id}">
+      <div class="pcard-img-wrap">
+        <img src="${p.img}" alt="${p.name}" class="pcard-img" loading="lazy" onerror="this.src='https://placehold.co/280x220/12122a/ffffff?text=${encodeURIComponent(p.category)}'"/>
+        ${p.badge ? `<span class="pcard-badge" style="background:${badgeColor(p.badge)}">${badgeLabel(p.badge)}</span>` : ''}
+        <button class="pcard-wish ${inW ? 'on' : ''}" onclick="toggleWish(event,'${p.id}')" title="Wishlist"><i class="fas fa-heart"></i></button>
+        <button class="qview" onclick="openPM('${p.id}')"><i class="fas fa-eye"></i> Quick View</button>
+      </div>
+      <div class="pcard-info">
+        <div class="pcard-cat">${CATS.find(c => c.name === p.category)?.icon || '🛍️'} ${p.category} • Ages ${p.age === 'all' ? 'All' : p.age}</div>
+        <div class="pcard-name">${p.name}</div>
+        <div class="pcard-desc">${p.desc}</div>
+        <div class="pcard-stars">${stars(p.rating)} <span>(${p.reviews || 0})</span></div>
+        <div class="pcard-pr">
+          <div>
+            <span class="pcard-price">₹${p.price.toLocaleString('en-IN')}</span>
+            ${p.original ? `<span class="pcard-orig">₹${p.original.toLocaleString('en-IN')}</span>` : ''}
+          </div>
+          ${p.discount ? `<span class="pcard-disc">-${p.discount}%</span>` : ''}
+        </div>
+        <button class="btn-cart" onclick="addToCart('${p.id}')">
+          <i class="fas fa-${inC ? 'check' : 'shopping-cart'}"></i> ${inC ? 'Added ✓' : 'Add to Cart'}
+        </button>
+      </div>
+    </div>`;
+      }).join('');
+      document.getElementById('load-more').style.display = f.length > shown ? 'block' : 'none';
+    }
+
+    function loadMore() { shown += 8; renderProds(); }
+    function ageFilter(age, el) { filter.age = age; shown = 12; document.querySelectorAll('.flt-btn').forEach(b => b.classList.remove('on')); el.classList.add('on'); renderProds(); goTo('shop'); }
+    function doSearch() { filter.q = document.getElementById('srch-inp').value; shown = 12; renderProds(); }
+
+    let sIdx = 0;
+    const SORTS = ['default', 'asc', 'desc', 'rating', 'new', 'disc'];
+    const SICNS = ['fa-sort', 'fa-sort-amount-up', 'fa-sort-amount-down', 'fa-star', 'fa-clock', 'fa-percentage'];
+    const SLBLS = ['Default', 'Price ↑', 'Price ↓', 'Rating', 'Newest', 'Discount'];
+    function cycleSort() { sIdx = (sIdx + 1) % SORTS.length; filter.sort = SORTS[sIdx]; document.getElementById('sort-ico').className = 'fas ' + SICNS[sIdx]; renderProds(); toast('Sorted: ' + SLBLS[sIdx], 'inf'); }
+
+    // ——— CART ———
+    function addToCart(id) {
+      const p = prods.find(x => x.id === id); if (!p) return;
+      const ex = cart.find(c => c.id === id);
+      if (ex) { ex.qty++; toast(`${p.name} qty updated!`, 'inf'); }
+      else { cart.push({ id, qty: 1 }); toast(`🛒 ${p.name} added to cart!`, 'suc'); confetti(); }
+      save.cart(); updateCC(); renderProds(); renderCartItems();
+    }
+    function rmCart(id) { cart = cart.filter(c => c.id !== id); save.cart(); updateCC(); renderProds(); renderCartItems(); }
+    function qtyChange(id, d) { const i = cart.find(c => c.id === id); if (!i) return; i.qty += d; if (i.qty <= 0) rmCart(id); else { save.cart(); updateCC(); renderCartItems(); } }
+    function updateCC() { document.getElementById('cc').textContent = cart.reduce((s, c) => s + c.qty, 0); }
+
+    function renderCartItems() {
+      const el = document.getElementById('cart-items');
+      if (!cart.length) { el.innerHTML = `<div class="c-empty"><i class="fas fa-shopping-cart"></i><p>Your cart is empty!<br>Add some amazing toys 🚗</p></div>`; document.getElementById('cart-foot').style.display = 'none'; return; }
+      document.getElementById('cart-foot').style.display = 'block';
+      el.innerHTML = cart.map(ci => {
+        const p = prods.find(x => x.id === ci.id); if (!p) return ''; return `
+    <div class="citem">
+      <img src="${p.img}" class="citem-img" onerror="this.src='https://placehold.co/68x68/12122a/ffffff?text=🛍️'"/>
+      <div class="citem-info">
+        <div class="citem-name">${p.name}</div>
+        <div class="citem-price">₹${(p.price * ci.qty).toLocaleString('en-IN')}</div>
+        <div class="qty-row">
+          <button class="qbtn" onclick="qtyChange('${ci.id}',-1)">−</button>
+          <span class="qnum">${ci.qty}</span>
+          <button class="qbtn" onclick="qtyChange('${ci.id}',1)">+</button>
+        </div>
+      </div>
+      <button class="crm" onclick="rmCart('${ci.id}')"><i class="fas fa-trash"></i></button>
+    </div>`;
+      }).join('');
+      const sub = cart.reduce((s, ci) => { const p = prods.find(x => x.id === ci.id); return s + (p ? p.price * ci.qty : 0); }, 0);
+      const isFree = sub >= 8000;
+
+      document.getElementById('cart-sub').textContent = `₹${sub.toLocaleString('en-IN')}`;
+
+      const delEl = document.getElementById('cart-del');
+      const noteEl = document.getElementById('cart-note');
+
+      if (isFree) {
+        delEl.textContent = '🎉 FREE';
+        delEl.style.fontSize = '';
+        delEl.style.color = 'var(--green)';
+        if (noteEl) noteEl.style.display = 'none';
+        document.getElementById('cart-tot').textContent = `₹${sub.toLocaleString('en-IN')}`;
+      } else {
+        delEl.textContent = 'Add. charges applicable';
+        delEl.style.fontSize = '0.78rem';
+        delEl.style.color = 'var(--yellow)';
+        if (noteEl) noteEl.style.display = 'block';
+        document.getElementById('cart-tot').textContent = `₹${sub.toLocaleString('en-IN')}*`;
+      }
+    }
+
+    function openCart() { renderCartItems(); document.getElementById('cart-sb').classList.add('on'); document.getElementById('cart-ov').classList.add('on'); document.body.style.overflow = 'hidden'; }
+    function closeCart() { document.getElementById('cart-sb').classList.remove('on'); document.getElementById('cart-ov').classList.remove('on'); document.body.style.overflow = ''; }
+    function checkout() {
+      if (!cart.length) return;
+
+      const orderId = 'ORD' + Date.now();
+      const sub = cart.reduce((s, ci) => { const p = prods.find(x => x.id === ci.id); return s + (p ? p.price * ci.qty : 0); }, 0);
+      const isFree = sub >= 8000;
+
+      // Build order details for local admin storage
+      const orderItemsText = cart.map(ci => {
+        const p = prods.find(x => x.id === ci.id);
+        return `${p?.name || '?'} x${ci.qty}`;
+      });
+
+      orders.unshift({
+        id: orderId,
+        items: orderItemsText,
+        total: sub,
+        status: 'pending',
+        date: new Date().toLocaleDateString('en-IN')
+      });
+
+      // Build WhatsApp message
+      let waMsg = `🚀 *NEW ORDER FROM KA21TOYS!* 🚗🧸\n`;
+      waMsg += `---------------------------------\n`;
+      waMsg += `📦 *Order ID:* ${orderId}\n`;
+      waMsg += `📅 *Date:* ${new Date().toLocaleDateString('en-IN')}\n\n`;
+      waMsg += `🛒 *Items Ordered:* \n`;
+
+      cart.forEach((ci, idx) => {
+        const p = prods.find(x => x.id === ci.id);
+        if (p) {
+          waMsg += `${idx + 1}. *${p.name}* (x${ci.qty}) - ₹${(p.price * ci.qty).toLocaleString('en-IN')}\n`;
+        }
+      });
+
+      waMsg += `\n---------------------------------\n`;
+      waMsg += `💰 *Subtotal:* ₹${sub.toLocaleString('en-IN')}\n`;
+      waMsg += `🚚 *Shipping:* ${isFree ? '🎉 FREE' : 'Add. charges applicable'}\n`;
+      waMsg += `💵 *Total Price:* ₹${sub.toLocaleString('en-IN')}${isFree ? '' : '*'}\n`;
+      waMsg += `---------------------------------\n\n`;
+      waMsg += `Hello! I would like to confirm my order. Please contact me to arrange shipping and payment details! Thanks! 🙏`;
+
+      // Encode message
+      const encodedMsg = encodeURIComponent(waMsg);
+      const waUrl = `https://wa.me/917899309905?text=${encodedMsg}`;
+
+      // Save locally
+      save.orders();
+      cart = [];
+      save.cart();
+      updateCC();
+      renderCartItems();
+      closeCart();
+
+      toast('🎉 Order placed! Opening WhatsApp to notify owner...', 'suc');
+      confetti();
+
+      // Open WhatsApp in a new tab
+      setTimeout(() => {
+        window.open(waUrl, '_blank');
+      }, 1000);
+    }
+
+    // ——— WISHLIST ———
+    function toggleWish(e, id) { e.stopPropagation(); if (wish.includes(id)) { wish = wish.filter(w => w !== id); toast('💔 Removed from wishlist', ''); } else { wish.push(id); const p = prods.find(x => x.id === id); toast(`❤️ ${p?.name} wishlisted!`, 'suc'); } save.wish(); updateWC(); renderProds(); renderWishItems(); }
+    function updateWC() { document.getElementById('wc').textContent = wish.length; }
+    function renderWishItems() {
+      const el = document.getElementById('wish-items');
+      const items = wish.map(id => prods.find(p => p.id === id)).filter(Boolean);
+      if (!items.length) { el.innerHTML = `<div class="c-empty"><i class="fas fa-heart"></i><p>Wishlist is empty!<br>Save your favourites ❤️</p></div>`; return; }
+      el.innerHTML = items.map(p => `
+    <div class="citem">
+      <img src="${p.img}" class="citem-img" onerror="this.src='https://placehold.co/68x68/12122a/ffffff?text=🛍️'"/>
+      <div class="citem-info">
+        <div class="citem-name">${p.name}</div>
+        <div class="citem-price">₹${p.price.toLocaleString('en-IN')}</div>
+        <div style="margin-top:.45rem;"><button class="btn-ed" onclick="addToCart('${p.id}');closeWish()">Add to Cart</button></div>
+      </div>
+      <button class="crm" onclick="toggleWish(event,'${p.id}')"><i class="fas fa-heart" style="color:var(--red)"></i></button>
+    </div>`).join('');
+    }
+    function openWish() { renderWishItems(); document.getElementById('wish-sb').classList.add('on'); document.getElementById('wish-ov').classList.add('on'); document.body.style.overflow = 'hidden'; }
+    function closeWish() { document.getElementById('wish-sb').classList.remove('on'); document.getElementById('wish-ov').classList.remove('on'); document.body.style.overflow = ''; }
+
+    // ——— PRODUCT MODAL ———
+    function openPM(id) {
+      const p = prods.find(x => x.id === id); if (!p) return;
+      document.getElementById('pm-img').src = p.img;
+      document.getElementById('pm-tag').textContent = `${CATS.find(c => c.name === p.category)?.icon || '🛍️'} ${p.category} • Ages ${p.age === 'all' ? 'All' : p.age}`;
+      document.getElementById('pm-name').textContent = p.name;
+      document.getElementById('pm-stars').innerHTML = `<span>${stars(p.rating)}</span> <span style="color:rgba(255,255,255,.4);font-size:.82rem;">${p.rating} (${p.reviews || 0} reviews)</span>`;
+      document.getElementById('pm-desc').textContent = p.desc;
+      document.getElementById('pm-price').textContent = `₹${p.price.toLocaleString('en-IN')}`;
+      document.getElementById('pm-orig').textContent = p.original ? `₹${p.original.toLocaleString('en-IN')}` : '';
+      document.getElementById('pm-disc').textContent = p.discount ? `-${p.discount}% OFF` : '';
+      document.getElementById('pm-specs').innerHTML = `
+    <div class="spec"><div class="spec-l">Material</div><div class="spec-v">${p.material || 'N/A'}</div></div>
+    <div class="spec"><div class="spec-l">Size</div><div class="spec-v">${p.dimensions || 'N/A'}</div></div>
+    <div class="spec"><div class="spec-l">Brand</div><div class="spec-v">${p.brand || 'KA21TOYS'}</div></div>
+    <div class="spec"><div class="spec-l">In Stock</div><div class="spec-v" style="color:${(p.stock || 0) > 0 ? 'var(--green)' : 'var(--red)'}">${(p.stock || 0) > 0 ? p.stock + ' left' : 'Out of Stock'}</div></div>
+  `;
+      document.getElementById('pm-cart').onclick = () => addToCart(id);
+      const inW = wish.includes(id);
+      const wb = document.getElementById('pm-wish');
+      wb.style.background = inW ? 'var(--red)' : '';
+      wb.onclick = () => toggleWish(new Event('click'), id);
+      document.getElementById('pm-ov').classList.add('on');
+      document.getElementById('pm').classList.add('on');
+      document.body.style.overflow = 'hidden';
+    }
+    function closePM(e, force = false) { if (force || (e && e.target === document.getElementById('pm-ov'))) { document.getElementById('pm-ov').classList.remove('on'); document.getElementById('pm').classList.remove('on'); document.body.style.overflow = ''; } }
+
+    // ——— TESTIMONIALS ———
+    const TESTS = [
+      { n: 'Priya S.', r: 'Mom of Arjun, 6', s: 5, t: 'The Hot Wheels pack is incredible! My son arranges them all day. So much detail in those tiny die-cast cars. KA21TOYS delivery was super fast too!' },
+      { n: 'Rahul M.', r: 'Dad of Riya, 4', s: 5, t: 'The giant teddy bear is HUGE and SO soft! My daughter literally sleeps with it every night. Amazing quality and perfect packaging. Will order more!' },
+      { n: 'Deepa K.', r: 'Mom of Vikram, 9', s: 5, t: 'The framed Hot Wheels display is absolutely stunning! My son hung it in his room and all his friends are jealous. A truly unique and premium gift!' },
+      { n: 'Arun T.', r: 'Dad of Meera, 3', s: 5, t: 'The red electric ride-on car is my daughter\'s favourite thing ever! She drives it every single day in our building. Solid build, great battery life. Worth every rupee!' },
+      { n: 'Sunita P.', r: 'Mom of Kartik, 8', s: 5, t: 'Ordered the framed collector car as a birthday gift and the recipient was blown away! The presentation is so premium. KA21TOYS really nailed this product!' },
+      { n: 'Vijay R.', r: 'Dad of Aarav, 10', s: 5, t: 'The Junior Supercar ride-on is unbelievable. Parental remote control makes it so safe. My son rides it at full speed with a huge smile. Best purchase of the year!' }
+    ];
+    function renderTests() {
+      document.getElementById('test-grid').innerHTML = TESTS.map(t => `
+    <div class="tcard reveal">
+      <div class="t-stars">${'★'.repeat(t.s)}</div>
+      <p class="t-text">"${t.t}"</p>
+      <div class="t-auth">
+        <div class="t-av">${t.n.charAt(0)}</div>
+        <div><div class="t-nm">${t.n}</div><div class="t-rl">${t.r}</div></div>
+      </div>
+    </div>`).join('');
+    }
+
+    // ——— NEWSLETTER ———
+    function subscribe() {
+      const e = document.getElementById('nl-email').value.trim();
+      if (!e || !e.includes('@')) { toast('Please enter a valid email!', ''); return; }
+      if (subs.includes(e)) { toast('Already subscribed! 🎉', 'inf'); return; }
+      subs.push(e); save.subs(); document.getElementById('nl-email').value = '';
+      toast('🎉 Subscribed! Get ready for amazing deals!', 'suc'); confetti();
+    }
+
+    // ——— COUNTDOWN ———
+    function initCountdown() {
+      const end = new Date(); end.setHours(23, 59, 59);
+      const tick = () => { let d = Math.max(0, end - new Date()); const h = Math.floor(d / 3600000); d %= 3600000; const m = Math.floor(d / 60000); d %= 60000; const s = Math.floor(d / 1000); document.getElementById('ch').textContent = String(h).padStart(2, '0'); document.getElementById('cm').textContent = String(m).padStart(2, '0'); document.getElementById('cs').textContent = String(s).padStart(2, '0'); };
+      tick(); setInterval(tick, 1000);
+    }
+
+    // ——— ADMIN ———
+    function openAdminLogin() { document.getElementById('al-ov').classList.add('on'); document.getElementById('al').classList.add('on'); document.body.style.overflow = 'hidden'; }
+    function closeAdminLogin(e, f = false) { if (f || (e && e.target === document.getElementById('al-ov'))) { document.getElementById('al-ov').classList.remove('on'); document.getElementById('al').classList.remove('on'); document.body.style.overflow = ''; document.getElementById('al-err').style.display = 'none'; } }
+    function doLogin() {
+      const u = document.getElementById('au').value.trim(); const p = document.getElementById('ap').value.trim(); const err = document.getElementById('al-err');
+      if (u === CREDS.u && p === CREDS.p) { err.style.display = 'none'; closeAdminLogin(null, true); openAdm(); }
+      else { err.style.display = 'block'; }
+    }
+    function openAdm() { document.getElementById('adm').classList.add('vis'); document.body.style.overflow = ''; renderAdmDash(); toast('👋 Welcome back, Admin!', 'suc'); }
+    function doLogout() { document.getElementById('adm').classList.remove('vis'); document.getElementById('au').value = ''; document.getElementById('ap').value = ''; toast('Logged out!', 'inf'); }
+    function switchTab(tab, el) {
+      document.querySelectorAll('.adm-tab').forEach(t => t.classList.remove('on'));
+      document.querySelectorAll('.adm-panel').forEach(p => p.classList.remove('on'));
+      el.classList.add('on'); document.getElementById('panel-' + tab).classList.add('on');
+      if (tab === 'prods') renderAdmProds();
+      if (tab === 'orders') renderAdmOrders();
+      if (tab === 'subs') renderAdmSubs();
+      if (tab === 'dash') renderAdmDash();
+    }
+
+    function renderAdmDash() {
+      const pub = prods.filter(p => p.status === 'published').length;
+      const dft = prods.filter(p => p.status === 'draft').length;
+      const rev = orders.reduce((s, o) => s + (o.total || 0), 0);
+      document.getElementById('adm-sg').innerHTML = `
+    <div class="sc2"><div class="si" style="background:rgba(255,59,92,.14);">🏎️</div><div><div class="sn">${pub}</div><div class="sl">Published</div></div></div>
+    <div class="sc2"><div class="si" style="background:rgba(255,217,61,.14);">📋</div><div><div class="sn">${dft}</div><div class="sl">Drafts</div></div></div>
+    <div class="sc2"><div class="si" style="background:rgba(61,214,140,.14);">📦</div><div><div class="sn">${orders.length}</div><div class="sl">Orders</div></div></div>
+    <div class="sc2"><div class="si" style="background:rgba(77,143,255,.14);">💰</div><div><div class="sn">₹${rev.toLocaleString('en-IN')}</div><div class="sl">Revenue</div></div></div>
+    <div class="sc2"><div class="si" style="background:rgba(177,79,255,.14);">📧</div><div><div class="sn">${subs.length}</div><div class="sl">Subscribers</div></div></div>
+    <div class="sc2"><div class="si" style="background:rgba(255,99,165,.14);">❤️</div><div><div class="sn">${wish.length}</div><div class="sl">Wishlisted</div></div></div>
+  `;
+      document.getElementById('qs').innerHTML = `🏎️ Hot Wheels: <b style="color:#fff">${prods.filter(p => p.category === 'Hot Wheels' && p.status === 'published').length}</b><br>🖼️ Framed Cars: <b style="color:#fff">${prods.filter(p => p.category === 'Framed Cars' && p.status === 'published').length}</b><br>🧸 Teddy Bears: <b style="color:#fff">${prods.filter(p => p.category === 'Teddy Bears' && p.status === 'published').length}</b><br>🚗 Ride-On Cars: <b style="color:#fff">${prods.filter(p => p.category === 'Ride-On Cars' && p.status === 'published').length}</b><br>🛒 Cart Items: <b style="color:#fff">${cart.length}</b><br>📬 Subscribers: <b style="color:#fff">${subs.length}</b>`;
+      document.getElementById('ra').innerHTML = orders.slice(0, 5).map(o => `🛍️ <b style="color:#fff">${o.id}</b> — ₹${(o.total || 0).toLocaleString('en-IN')} (${o.status})<br>`).join('') || '<span style="color:rgba(255,255,255,.3)">No orders yet</span>';
+    }
+
+    function pubProd() { saveProd('published'); }
+    function draftProd() { saveProd('draft'); }
+    function saveProd(status) {
+      const name = document.getElementById('an').value.trim();
+      const price = parseFloat(document.getElementById('apr').value);
+      const orig = parseFloat(document.getElementById('aor').value) || 0;
+      const disc = parseFloat(document.getElementById('adc').value) || 0;
+      const cat = document.getElementById('acat').value;
+      const age = document.getElementById('aage').value;
+      const stk = parseInt(document.getElementById('astk').value) || 10;
+      const mat = document.getElementById('amat').value.trim();
+      const dim = document.getElementById('adim').value.trim();
+      const brd = document.getElementById('abrd').value.trim() || 'KA21TOYS';
+      const bdg = document.getElementById('abdg').value;
+      const rat = parseFloat(document.getElementById('arat').value) || 4.5;
+      const desc = document.getElementById('adesc').value.trim();
+      let img = document.getElementById('aimg').value.trim();
+      const tags = document.getElementById('atags').value.split(',').map(t => t.trim()).filter(Boolean);
+      if (!name) { toast('❌ Name required!', ''); return; }
+      if (!price || price <= 0) { toast('❌ Valid price required!', ''); return; }
+      if (!desc) { toast('❌ Description required!', ''); return; }
+
+      // Auto-prepend images/ if it is a local relative filename
+      if (img && !img.startsWith('data:') && !img.startsWith('http://') && !img.startsWith('https://') && !img.startsWith('images/')) {
+        img = 'images/' + img;
+      }
+
+      prods.unshift({ id: 'p' + Date.now(), name, price, original: orig, discount: disc, age, category: cat, stock: stk, material: mat, dimensions: dim, brand: brd, badge: bdg, rating: rat, reviews: 0, desc, img: img || 'images/hw1.png', tags, status, createdAt: Date.now() });
+      save.prods(); renderProds(); renderCats(); animateStat(); resetForm();
+      toast(status === 'published' ? '🎉 Product published!' : '📋 Saved as draft.', 'suc');
+      if (status === 'published') confetti();
+      switchTab('prods', document.querySelectorAll('.adm-tab')[2]);
+    }
+    function resetForm() { ['an', 'apr', 'aor', 'adc', 'astk', 'amat', 'adim', 'adesc', 'aimg', 'atags'].forEach(id => document.getElementById(id).value = ''); document.getElementById('abrd').value = 'KA21TOYS'; document.getElementById('arat').value = '4.5'; document.getElementById('astk').value = '10'; document.getElementById('abdg').value = ''; document.getElementById('aimg-prev').classList.remove('vis'); document.getElementById('aimg-file').value = ''; }
+    function prevImg() {
+      let u = document.getElementById('aimg').value.trim();
+      if (u && !u.startsWith('data:') && !u.startsWith('http://') && !u.startsWith('https://') && !u.startsWith('images/')) {
+        u = 'images/' + u;
+      }
+      const p = document.getElementById('aimg-prev');
+      if (u) { p.src = u; p.classList.add('vis'); } else { p.classList.remove('vis'); }
+    }
+    function calcAddDiscount() {
+      const price = parseFloat(document.getElementById('apr').value) || 0;
+      const original = parseFloat(document.getElementById('aor').value) || 0;
+      const discountInput = document.getElementById('adc');
+      if (original > price && price > 0) {
+        discountInput.value = Math.round(((original - price) / original) * 100);
+      } else {
+        discountInput.value = 0;
+      }
+    }
+    function calcEditDiscount() {
+      const price = parseFloat(document.getElementById('ep').value) || 0;
+      const original = parseFloat(document.getElementById('eo').value) || 0;
+      const discountInput = document.getElementById('ed');
+      if (original > price && price > 0) {
+        discountInput.value = Math.round(((original - price) / original) * 100);
+      } else {
+        discountInput.value = 0;
+      }
+    }
+    function prevEditImg() {
+      let u = document.getElementById('eimg').value.trim();
+      if (u && !u.startsWith('data:') && !u.startsWith('http://') && !u.startsWith('https://') && !u.startsWith('images/')) {
+        u = 'images/' + u;
+      }
+      const p = document.getElementById('eimg-prev');
+      if (u) {
+        p.src = u;
+        p.classList.add('vis');
+      } else {
+        p.classList.remove('vis');
+      }
+    }
+    function handleFileUpload(event, inputId, prevId) {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        const img = new Image();
+        img.onload = function () {
+          // Maximum dimensions for auto-resizing
+          const MAX_WIDTH = 400;
+          const MAX_HEIGHT = 400;
+          let width = img.width;
+          let height = img.height;
+
+          if (width > height) {
+            if (width > MAX_WIDTH) {
+              height *= MAX_WIDTH / width;
+              width = MAX_WIDTH;
+            }
+          } else {
+            if (height > MAX_HEIGHT) {
+              width *= MAX_HEIGHT / height;
+              height = MAX_HEIGHT;
+            }
+          }
+
+          const canvas = document.createElement('canvas');
+          canvas.width = width;
+          canvas.height = height;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, width, height);
+
+          // Auto-resized & compressed Base64 Data URL (0.7 quality)
+          const compressedDataUrl = canvas.toDataURL('image/jpeg', 0.7);
+
+          document.getElementById(inputId).value = compressedDataUrl;
+          const prev = document.getElementById(prevId);
+          prev.src = compressedDataUrl;
+          prev.classList.add('vis');
+
+          toast('📸 Image optimized and previewed!', 'suc');
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function renderAdmProds() {
+      const q = (document.getElementById('adm-srch')?.value || '').toLowerCase();
+      const f = prods.filter(p => p.name.toLowerCase().includes(q) || p.category.toLowerCase().includes(q));
+      const tb = document.getElementById('adm-tbody');
+      if (!f.length) { tb.innerHTML = `<tr><td colspan="8" style="text-align:center;padding:2rem;color:rgba(255,255,255,.3)">No products found</td></tr>`; return; }
+      tb.innerHTML = f.map(p => `
+    <tr>
+      <td><img src="${p.img}" class="at-img" onerror="this.src='https://placehold.co/50x50/12122a/ffffff?text=🛍️'"/></td>
+      <td><div class="at-name">${p.name}</div><div style="color:rgba(255,255,255,.32);font-size:.73rem;font-weight:800;">${p.category}</div></td>
+      <td><div class="at-price">₹${p.price.toLocaleString('en-IN')}</div>${p.discount ? `<div style="color:var(--green);font-size:.7rem;font-weight:900">-${p.discount}%</div>` : ''}</td>
+      <td style="color:rgba(255,255,255,.55);font-size:.82rem;font-weight:700">${p.category}</td>
+      <td style="color:rgba(255,255,255,.55);font-size:.82rem;font-weight:700">Ages ${p.age === 'all' ? 'All' : p.age}</td>
+      <td style="color:${(p.stock || 0) > 5 ? 'var(--green)' : 'var(--red)'};font-weight:900">${p.stock || 0}</td>
+      <td><span class="spill ${p.status === 'published' ? 'pub' : 'dft'}">${p.status === 'published' ? '✅ Live' : '📋 Draft'}</span></td>
+      <td>
+        <div class="act-row">
+          <button class="btn-ed" onclick="openEM('${p.id}')">✏️ Edit</button>
+          <button class="btn-tg" onclick="toggleStatus('${p.id}')">${p.status === 'published' ? '📋 Draft' : '✅ Publish'}</button>
+          <button class="btn-dl" onclick="delProd('${p.id}')">🗑️ Del</button>
+        </div>
+      </td>
+    </tr>`).join('');
+    }
+    function toggleStatus(id) { const p = prods.find(x => x.id === id); if (!p) return; p.status = p.status === 'published' ? 'draft' : 'published'; save.prods(); renderAdmProds(); renderProds(); renderCats(); toast(`${p.name} → ${p.status}`, 'suc'); }
+    function delProd(id) { if (!confirm('Delete this product?')) return; prods = prods.filter(p => p.id !== id); save.prods(); renderAdmProds(); renderProds(); renderCats(); toast('🗑️ Deleted.', ''); }
+
+    function openEM(id) {
+      const p = prods.find(x => x.id === id); if (!p) return; editId = id;
+      document.getElementById('en').value = p.name || '';
+      document.getElementById('ep').value = p.price || '';
+      document.getElementById('eo').value = p.original || '';
+      document.getElementById('ed').value = p.discount || '';
+      document.getElementById('ea').value = p.age || '3-5';
+      document.getElementById('ec').value = p.category || 'Hot Wheels';
+      document.getElementById('edesc').value = p.desc || '';
+      document.getElementById('eimg').value = p.img || '';
+      document.getElementById('estk').value = p.stock || 10;
+      document.getElementById('emat').value = p.material || '';
+
+      const prev = document.getElementById('eimg-prev');
+      if (p.img) {
+        prev.src = p.img;
+        prev.classList.add('vis');
+      } else {
+        prev.classList.remove('vis');
+      }
+
+      document.getElementById('em-ov').classList.add('on'); document.getElementById('em').classList.add('on');
+    }
+    function closeEM(e, f = false) {
+      if (f || (e && e.target === document.getElementById('em-ov'))) {
+        document.getElementById('em-ov').classList.remove('on');
+        document.getElementById('em').classList.remove('on');
+        editId = null;
+        document.getElementById('eimg-file').value = '';
+        document.getElementById('eimg-prev').classList.remove('vis');
+      }
+    }
+    function saveEdit() {
+      if (!editId) return; const p = prods.find(x => x.id === editId); if (!p) return;
+      p.name = document.getElementById('en').value.trim() || p.name;
+      p.price = parseFloat(document.getElementById('ep').value) || p.price;
+      p.original = parseFloat(document.getElementById('eo').value) || p.original;
+      p.discount = parseFloat(document.getElementById('ed').value) || p.discount;
+      p.age = document.getElementById('ea').value;
+      p.category = document.getElementById('ec').value;
+      p.desc = document.getElementById('edesc').value.trim() || p.desc;
+      
+      let imgVal = document.getElementById('eimg').value.trim();
+      if (imgVal && !imgVal.startsWith('data:') && !imgVal.startsWith('http://') && !imgVal.startsWith('https://') && !imgVal.startsWith('images/')) {
+        imgVal = 'images/' + imgVal;
+      }
+      p.img = imgVal || p.img;
+      
+      p.stock = parseInt(document.getElementById('estk').value) || p.stock;
+      p.material = document.getElementById('emat').value.trim() || p.material;
+      save.prods(); renderAdmProds(); renderProds(); closeEM(null, true); toast('✅ Product updated!', 'suc');
+    }
+
+    function renderAdmOrders() {
+      const el = document.getElementById('adm-orders');
+      if (!orders.length) { el.innerHTML = `<div style="text-align:center;padding:3rem;color:rgba(255,255,255,.3)"><i class="fas fa-receipt" style="font-size:3rem;margin-bottom:1rem;display:block"></i>No orders yet</div>`; return; }
+      el.innerHTML = orders.map(o => `
+    <div class="ocard">
+      <div><div class="o-id">Order: ${o.id} • ${o.date || ''}</div><div class="o-itms">${(o.items || []).join(', ')}</div></div>
+      <div style="display:flex;align-items:center;gap:.9rem;flex-wrap:wrap;">
+        <div class="o-tot">₹${(o.total || 0).toLocaleString('en-IN')}</div>
+        <select class="afs" style="width:auto;padding:.28rem .75rem;font-size:.8rem" onchange="updOrder('${o.id}',this.value)">
+          <option value="pending" ${o.status === 'pending' ? 'selected' : ''}>⏳ Pending</option>
+          <option value="processing" ${o.status === 'processing' ? 'selected' : ''}>🔄 Processing</option>
+          <option value="shipped" ${o.status === 'shipped' ? 'selected' : ''}>🚚 Shipped</option>
+          <option value="delivered" ${o.status === 'delivered' ? 'selected' : ''}>✅ Delivered</option>
+        </select>
+      </div>
+    </div>`).join('');
+    }
+    function updOrder(id, st) { const o = orders.find(x => x.id === id); if (o) { o.status = st; save.orders(); toast(`Order ${id} → ${st}`, 'inf'); } }
+
+    function renderAdmSubs() {
+      const el = document.getElementById('adm-subs');
+      if (!subs.length) { el.innerHTML = `<div style="text-align:center;padding:3rem;color:rgba(255,255,255,.3)"><i class="fas fa-envelope" style="font-size:3rem;margin-bottom:1rem;display:block"></i>No subscribers yet</div>`; return; }
+      el.innerHTML = `<p style="color:rgba(255,255,255,.45);margin-bottom:1rem;font-weight:800">${subs.length} subscriber(s)</p>` + subs.map((e, i) => `
+    <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:.75rem 1.1rem;margin-bottom:.45rem;display:flex;align-items:center;justify-content:space-between;">
+      <span style="color:#fff;font-weight:800">📧 ${e}</span>
+      <button class="btn-dl" onclick="rmSub(${i})">Remove</button>
+    </div>`).join('');
+    }
+    function rmSub(i) { subs.splice(i, 1); save.subs(); renderAdmSubs(); toast('Removed.', ''); }
+
+    // ——— SCROLL ———
+    function goTo(id) { const el = document.getElementById(id); if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+    function initReveal() {
+      const obs = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) e.target.classList.add('vis'); }), { threshold: .1 });
+      document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+    }
+    window.addEventListener('scroll', () => { document.getElementById('navbar').style.background = window.scrollY > 20 ? 'rgba(8,8,18,.98)' : 'rgba(13,13,26,.88)'; });
+
+    // ——— TOAST ———
+    function toast(msg, type = '') {
+      const c = document.getElementById('toast-c');
+      const t = document.createElement('div'); t.className = 'toast ' + (type || '');
+      const ico = { suc: '✅', inf: 'ℹ️', '': `💡` };
+      t.innerHTML = `<span>${ico[type] || '💡'}</span><span>${msg}</span>`;
+      c.appendChild(t);
+      setTimeout(() => { t.style.animation = 't-out .3s ease forwards'; setTimeout(() => t.remove(), 300); }, 3400);
+    }
+
+    // ——— CONFETTI ———
+    function confetti() {
+      const cols = ['#FF3B5C', '#FFD93D', '#3DD68C', '#4B8FFF', '#B14FFF', '#FF6B2B'];
+      for (let i = 0; i < 28; i++) {
+        const c = document.createElement('div'); c.className = 'conf';
+        const sz = Math.random() * 10 + 5;
+        c.style.cssText = `left:${Math.random() * 100}vw;width:${sz}px;height:${sz}px;background:${cols[Math.floor(Math.random() * cols.length)]};animation-duration:${Math.random() * 2 + 1.4}s;animation-delay:${Math.random() * 0.4}s;border-radius:${Math.random() > .5 ? '50%' : '3px'};`;
+        document.body.appendChild(c); setTimeout(() => c.remove(), 3200);
+      }
+    }
+
+    // ——— MOBILE NAV ———
+    function toggleMob() {
+      const n = document.getElementById('mobile-nav');
+      const ic = document.getElementById('hbg').querySelector('i');
+      n.classList.toggle('open');
+      ic.className = n.classList.contains('open') ? 'fas fa-times' : 'fas fa-bars';
+    }
+
+    // ——— ESC KEY ———
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeCart(); closeWish(); closePM(null, true); closeAdminLogin(null, true); closeEM(null, true); } });
+
+    // ——— NITRO BOOST TOY CAR ———
+    function activateNitro(el) {
+      if (el.classList.contains('boosted')) return;
+      el.classList.add('boosted');
+      toast('🏎️ WHOOSH! Nitro Boost Activated! 🚀💨', 'suc');
+      confetti();
+      setTimeout(() => {
+        el.classList.remove('boosted');
+      }, 1300);
+    }
+  </script>
+</body>
+
+</html>
