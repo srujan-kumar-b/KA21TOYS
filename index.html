@@ -821,7 +821,7 @@
 
     /* ======= CATEGORIES ======= */
     #categories {
-      padding: 6rem 0;
+      padding: 3.5rem 0;
       background: linear-gradient(180deg, var(--dark), var(--dark2));
     }
 
@@ -899,73 +899,10 @@
       font-weight: 800;
     }
 
-    /* ======= FILTERS ======= */
-    #filters {
-      padding: 3rem 0;
-      background: var(--dark);
-    }
 
-    .filter-row {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 1.8rem;
-      flex-wrap: wrap;
-      margin-top: 1.5rem;
-    }
-
-    .flt-btn {
-      width: 82px;
-      height: 82px;
-      border-radius: 50% !important;
-      /* Perfect circle */
-      background: var(--card) !important;
-      border: 2.2px solid var(--border) !important;
-      color: #fff !important;
-      display: flex !important;
-      flex-direction: column !important;
-      align-items: center !important;
-      justify-content: center !important;
-      cursor: pointer !important;
-      transition: var(--transition) !important;
-      padding: 0 !important;
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.22);
-    }
-
-    .flt-btn:hover {
-      transform: translateY(-5px) scale(1.04);
-      border-color: rgba(255, 255, 255, 0.28) !important;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.32);
-    }
-
-    .flt-btn.on {
-      background: linear-gradient(135deg, var(--red), var(--orange)) !important;
-      border-color: transparent !important;
-      box-shadow: 0 8px 24px rgba(227, 27, 35, 0.45) !important;
-      transform: translateY(-4px) scale(1.06);
-    }
-
-    .flt-ico {
-      font-size: 1.55rem;
-      margin-bottom: 0.15rem;
-      line-height: 1;
-    }
-
-    .flt-txt {
-      font-family: 'Fredoka One', cursive;
-      font-size: 0.68rem;
-      font-weight: 800;
-      color: rgba(255, 255, 255, 0.85);
-      line-height: 1.1;
-      white-space: nowrap;
-    }
-
-    .flt-btn.on .flt-txt {
-      color: #fff;
-    }
 
     #search-bar {
-      padding: 2rem 0 1rem;
+      padding: 1.2rem 0 0.8rem;
       background: #0d0d1a;
     }
 
@@ -3258,32 +3195,7 @@
         padding: 0.65rem 1.4rem !important;
       }
 
-      /* Circular age filter mobile adjustments */
-      .filter-row {
-        gap: 0.65rem !important;
-        margin-top: 1rem !important;
-      }
 
-      .flt-btn {
-        width: 64px !important;
-        height: 64px !important;
-        border-width: 1.5px !important;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15) !important;
-      }
-
-      .flt-btn.on {
-        box-shadow: 0 5px 15px rgba(227, 27, 35, 0.35) !important;
-        transform: translateY(-2px) scale(1.04) !important;
-      }
-
-      .flt-ico {
-        font-size: 1.28rem !important;
-        margin-bottom: 0.05rem !important;
-      }
-
-      .flt-txt {
-        font-size: 0.55rem !important;
-      }
 
       /* Padding and cleanups for bottom nav */
       body {
@@ -3687,22 +3599,18 @@
       }
 
       /* Tighter section-to-section paddings on mobile (reduces vertical gaps) */
-      #categories,
+      #categories {
+        padding: 1.8rem 0 !important;
+      }
+
       #featured,
       #testimonials,
       #nl {
         padding: 2.8rem 0 !important;
-        /* Reduced from 5rem/6rem to standard mobile padding */
-      }
-
-      #filters {
-        padding: 1.6rem 0 !important;
-        /* Reduced from 3rem */
       }
 
       #search-bar {
-        padding: 1.1rem 0 0.2rem !important;
-        /* Tightened search bar vertical margin */
+        padding: 0.8rem 0 0.1rem !important;
       }
 
       #shop {
@@ -3967,12 +3875,12 @@
         <h1 class="hero-h1" id="hero-h1-tw"></h1>
         <p class="hero-sub">India's most exciting toy shop for kids aged 3–12! Hot Wheels collectibles, framed display
           cars, giant teddy bears & electric ride-on cars that kids actually drive!</p>
-        <div class="hero-category-pills">
+        <!-- <div class="hero-category-pills">
           <div class="hcat-pill hw" onclick="filterCat('Hot Wheels')">🏎️ Hot Wheels</div>
           <div class="hcat-pill frame" onclick="filterCat('Framed Cars')">🖼️ Framed Cars</div>
           <div class="hcat-pill teddy" onclick="filterCat('Teddy Bears')">🧸 Teddy Bears</div>
           <div class="hcat-pill rideon" onclick="filterCat('Ride-On Cars')">🚗 Ride-On Cars</div>
-        </div>
+        </div> -->
         <div class="hero-btns">
           <button class="btn-p ripple-wrap" onclick="goTo('shop')"><i class="fas fa-rocket"></i> Shop Now</button>
           <button class="btn-s ripple-wrap" onclick="goTo('deals')"><i class="fas fa-fire"></i> Today's Deals</button>
@@ -4021,33 +3929,7 @@
     </div>
   </section>
 
-  <!-- ======= AGE FILTER ======= -->
-  <section id="filters">
-    <div class="sc">
-      <div class="sh reveal" style="margin-bottom:1.4rem;">
-        <div class="stag">🎂 Filter by Age</div>
-        <h2 class="stitle">Find Toys for <span>Your Child</span></h2>
-      </div>
-      <div class="filter-row">
-        <button class="flt-btn on" data-age="all" onclick="ageFilter('all',this)">
-          <span class="flt-ico">🌈</span>
-          <span class="flt-txt">All Ages</span>
-        </button>
-        <button class="flt-btn" data-age="3-5" onclick="ageFilter('3-5',this)">
-          <span class="flt-ico">🐣</span>
-          <span class="flt-txt">3–5 Yrs</span>
-        </button>
-        <button class="flt-btn" data-age="6-8" onclick="ageFilter('6-8',this)">
-          <span class="flt-ico">🚀</span>
-          <span class="flt-txt">6–8 Yrs</span>
-        </button>
-        <button class="flt-btn" data-age="9-12" onclick="ageFilter('9-12',this)">
-          <span class="flt-ico">⚡</span>
-          <span class="flt-txt">9–12 Yrs</span>
-        </button>
-      </div>
-    </div>
-  </section>
+
 
   <!-- ======= SEARCH ======= -->
   <section id="search-bar">
@@ -5035,7 +4917,6 @@
     }
 
     function loadMore() { shown += 8; renderProds(); }
-    function ageFilter(age, el) { filter.age = age; shown = 12; document.querySelectorAll('.flt-btn').forEach(b => b.classList.remove('on')); el.classList.add('on'); renderProds(); goTo('shop'); }
     function doSearch() { filter.q = document.getElementById('srch-inp').value; shown = 12; renderProds(); }
 
     let sIdx = 0;
